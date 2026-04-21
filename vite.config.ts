@@ -11,9 +11,10 @@ export default defineConfig(async ({ command, mode }) => {
   plugins.push(tailwindcss());
   plugins.push(tsConfigPaths({ projects: ["./tsconfig.json"] }));
 
-  if (command === "build") {
-    plugins.push(cloudflare({ viteEnvironment: { name: "ssr" } }));
-  }
+  // Commented out Cloudflare plugin for static export
+  // if (command === "build") {
+  //   plugins.push(cloudflare({ viteEnvironment: { name: "ssr" } }));
+  // }
 
   plugins.push(tanstackStart());
   plugins.push(react());
@@ -23,6 +24,9 @@ export default defineConfig(async ({ command, mode }) => {
   for (const [key, value] of Object.entries(env)) {
     define[`import.meta.env.${key}`] = JSON.stringify(value);
   }
+
+  // Disable SSR for static export
+  define["process.env.TANSTACK_START_SSR"] = "false";
 
   return {
     server: { port: 5173, strictPort: false },
