@@ -1,16 +1,43 @@
-// TanStack build configuration already includes the following — do NOT add them manually
-// or the app will break with duplicate plugins:
-//   - tanstackStart, viteReact, tailwindcss, tsConfigPaths, cloudflare (build-only),
-//     componentTagger (dev-only), VITE_* env injection, @ path alias, React/TanStack dedupe,
-//     error logger plugins, and sandbox detection (port/host/strictPort).
-// You can pass additional config via defineConfig({ vite: { ... } }) if needed.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig, loadEnv } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import react from "@vitejs/plugin-react";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { cloudflare } from "@cloudflare/vite-plugin";
 
-export default defineConfig({
-  vite: {
-    server: {
-      port: 5173,
-      strictPort: false,
+export default defineConfig(async ({ command, mode }) => {
+  const plugins = [];
+
+  plugins.push(tailwindcss());
+  plugins.push(tsConfigPaths({ projects: ["./tsconfig.json"] }));
+
+  if (command === "build") {
+    plugins.push(cloudflare({ viteEnvironment: { name: "ssr" } }));
+  }
+
+  plugins.push(tanstackStart());
+  plugins.push(react());
+
+  const env = loadEnv(mode, process.cwd(), "VITE_");
+  const define: Record<string, string> = {};
+  for (const [key, value] of Object.entries(env)) {
+    define[`import.meta.env.${key}`] = JSON.stringify(value);
+  }
+
+  return {
+    server: { port: 5173, strictPort: false },
+    define,
+    resolve: {
+      alias: { "@": `${process.cwd()}/src` },
+      dedupe: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+        "@tanstack/react-query",
+        "@tanstack/query-core",
+      ],
     },
-  },
+    plugins,
+  };
 });
