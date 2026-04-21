@@ -85,8 +85,8 @@ export function Footer() {
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row gap-3 justify-between text-xs text-white/50">
           <div>© {new Date().getFullYear()} TranZfort Technologies Pvt. Ltd. All rights reserved.</div>
           <div className="flex gap-5">
-            <Link to="/legal" className="hover:text-white transition-colors">Privacy</Link>
-            <Link to="/legal" className="hover:text-white transition-colors">Terms</Link>
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
             <Link to="/contact" className="hover:text-white transition-colors">Support</Link>
           </div>
         </div>
