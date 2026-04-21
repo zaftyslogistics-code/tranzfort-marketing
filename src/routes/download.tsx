@@ -51,7 +51,7 @@ function DownloadPage() {
               </div>
               <ArrowRight className="h-5 w-5 text-ink-soft" />
             </a>
-            <a href="#" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 transition-all">
+            <a href="/app-release.apk" download className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 transition-all">
               <Smartphone className="h-9 w-9" />
               <div className="text-left flex-1">
                 <div className="text-xs text-ink-soft">For older Android — direct</div>
