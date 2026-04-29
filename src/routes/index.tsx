@@ -31,7 +31,7 @@ export default function Home() {
 /* ───────────────────────── HERO ───────────────────────── */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-dark text-white">
+    <section id="hero" className="relative overflow-hidden bg-gradient-dark text-white">
       <div className="absolute inset-0 grid-pattern opacity-50" />
       <div
         className="absolute inset-0"
@@ -165,7 +165,7 @@ function TrustBar() {
     { icon: MessageSquare, label: "24/7 Support", sub: "Hindi & English" },
   ];
   return (
-    <section className="py-14 bg-background border-b border-border">
+    <section id="trust-bar" className="py-14 bg-background border-b border-border">
       <div className="max-w-7xl mx-auto px-5 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
         {items.map((it, i) => (
           <motion.div
@@ -191,7 +191,7 @@ function TrustBar() {
 /* ───────────────────────── OFFLINE AI ───────────────────────── */
 function OfflineAI() {
   return (
-    <section className="relative py-24 lg:py-32 bg-background overflow-hidden">
+    <section id="offline-ai" className="relative py-24 lg:py-32 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
@@ -270,7 +270,7 @@ const features = [
 
 function FeaturesGrid() {
   return (
-    <section className="py-24 lg:py-32 bg-muted/40">
+    <section id="features-grid" className="py-24 lg:py-32 bg-muted/40">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">The AI Stack</div>
@@ -313,7 +313,7 @@ function DemoSection() {
     { who: "ai", text: "✓ Showing optimal route with 2 fuel stops. Total: 148 km | ETA 3h 12m." },
   ];
   return (
-    <section className="py-24 lg:py-32 bg-gradient-dark text-white relative overflow-hidden">
+    <section id="demo" className="py-24 lg:py-32 bg-gradient-dark text-white relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-40" />
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
@@ -365,7 +365,7 @@ function DemoSection() {
 /* ───────────────────────── DUAL PERSONA ───────────────────────── */
 function DualPersona() {
   return (
-    <section className="py-24 lg:py-32 bg-background">
+    <section id="dual-persona" className="py-24 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-5 lg:px-8 space-y-16">
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-4xl lg:text-5xl font-bold">AI for <span className="text-gradient-brand">both sides</span>.</h2>
@@ -444,7 +444,7 @@ function Stats() {
     { v: "100%", l: "Offline functionality on highways" },
   ];
   return (
-    <section className="py-20 bg-gradient-brand text-white relative overflow-hidden">
+    <section id="stats" className="py-20 bg-gradient-brand text-white relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20" />
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
         {stats.map((s, i) => (
@@ -471,7 +471,7 @@ function Testimonials() {
     { q: "I speak in Hindi, app understands everything. Even works in tunnels with no signal.", n: "Manjeet Singh", r: "Driver, Punjab" },
   ];
   return (
-    <section className="py-24 lg:py-32 bg-muted/40">
+    <section id="testimonials" className="py-24 lg:py-32 bg-muted/40">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <h2 className="text-4xl lg:text-5xl font-bold">Real results. Real AI.</h2>
@@ -512,7 +512,7 @@ function Testimonials() {
 /* ───────────────────────── CTA ───────────────────────── */
 function CTASection() {
   return (
-    <section className="py-24 lg:py-28 bg-background">
+    <section id="cta" className="py-24 lg:py-28 bg-background">
       <div className="max-w-6xl mx-auto px-5 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-dark text-white p-10 lg:p-16">
           <div className="absolute inset-0 grid-pattern opacity-40" />

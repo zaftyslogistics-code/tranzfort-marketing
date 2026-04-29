@@ -19,7 +19,16 @@ const FeaturesPage = lazy(() => import("./routes/features"));
 
 function App() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-ink">TranZfort</h1>
+            <p className="mt-2 text-ink-soft">Loading...</p>
+          </div>
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<IndexPage />} />
         <Route path="/about" element={<AboutPage />} />
