@@ -62,7 +62,7 @@ function Hero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight"
             >
-              FINAL TEST - <span className="text-gradient-brand">AI logistics</span> platform
+              SSH SUCCESS - <span className="text-gradient-brand">AI logistics</span> platform
             </motion.h1>
 
             <motion.p
