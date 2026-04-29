@@ -42,6 +42,37 @@ export function SEO() {
       {/* Language targeting */}
       <link rel="alternate" hrefLang="en-in" href={config.canonical} />
       <link rel="alternate" hrefLang="x-default" href={config.canonical} />
+
+      {/* Organization Schema (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "TranZfort Technologies Pvt. Ltd.",
+            "url": "https://tranzfort.com",
+            "logo": "https://tranzfort.com/logo.png",
+            "description": "India's first offline-first, AI-powered logistics network for truckers and suppliers.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN",
+              "addressLocality": "India"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-927-092-3581",
+              "contactType": "customer service",
+              "email": "support@tranzfort.com"
+            },
+            "sameAs": [
+              "https://twitter.com/tranzfort",
+              "https://linkedin.com/company/tranzfort",
+              "https://instagram.com/tranzfort"
+            ]
+          }, null, 2)
+        }}
+      />
     </Helmet>
   );
 }

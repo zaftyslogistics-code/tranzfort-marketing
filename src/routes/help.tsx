@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Search, Smartphone, CreditCard, ShieldCheck, Truck, Settings, MessageSquare, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
@@ -26,6 +27,25 @@ const faqs = [
 function HelpPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": faqs.map((faq) => ({
+                "@type": "Question",
+                "name": faq.q,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.a
+                }
+              }))
+            }, null, 2)
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="Help Center"
         title={<>How can we <span className="text-gradient-brand">help you?</span></>}

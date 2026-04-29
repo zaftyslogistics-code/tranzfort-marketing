@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Smartphone, Apple, Play, QrCode, ArrowRight, Check, WifiOff, Mic, Languages, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
@@ -9,6 +10,43 @@ import screen from "@/assets/screen-chat.jpg";
 function DownloadPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "TranZfort",
+              "operatingSystem": "Android, iOS",
+              "applicationCategory": "BusinessApplication",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "INR"
+              },
+              "description": "India's first offline-first, AI-powered logistics network for truckers and suppliers.",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "12500"
+              },
+              "featureList": [
+                "Offline-first AI assistant",
+                "Voice commands in Hindi and English",
+                "AI-powered load matching",
+                "Real-time route optimization",
+                "Digital LR and POD generation"
+              ],
+              "downloadUrl": "https://tranzfort.com/download",
+              "author": {
+                "@type": "Organization",
+                "name": "TranZfort Technologies Pvt. Ltd."
+              }
+            }, null, 2)
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="Download"
         title={<>Get TranZfort. <span className="text-gradient-brand">Free, forever.</span></>}
