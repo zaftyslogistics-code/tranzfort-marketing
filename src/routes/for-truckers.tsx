@@ -1,22 +1,10 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Mic, RotateCw, ShieldCheck, Wallet, Smartphone, WifiOff } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
 import screen from "@/assets/screen-route.jpg";
-
-export const Route = createFileRoute("/for-truckers")({
-  component: TruckersPage,
-  head: () => ({
-    meta: [
-      { title: "For Truckers — Never Drive Empty Again | TranZfort" },
-      { name: "description", content: "AI finds return loads, plans diesel-saving routes, and listens in Hindi or English. Built for Indian highways and the drivers who power them." },
-      { property: "og:title", content: "TranZfort for Truckers" },
-      { property: "og:description", content: "Voice-first. Offline-ready. Hindi & English. Find loads, save diesel, drive safer." },
-    ],
-  }),
-});
 
 function TruckersPage() {
   return (
@@ -118,3 +106,5 @@ function TruckersPage() {
     </SiteLayout>
   );
 }
+
+export default TruckersPage;

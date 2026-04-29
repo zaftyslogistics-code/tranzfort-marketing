@@ -1,20 +1,7 @@
-import { createFileRoute } from "react-router-dom";
 import { motion } from "framer-motion";
 import { UserPlus, Bot, Truck, Star, ArrowRight, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/how-it-works")({
-  component: HowItWorks,
-  head: () => ({
-    meta: [
-      { title: "How TranZfort Works — AI at Every Step | TranZfort" },
-      { name: "description", content: "From signup to rating, AI guides every step of the logistics journey on TranZfort. See exactly how it works." },
-      { property: "og:title", content: "How TranZfort Works" },
-      { property: "og:description", content: "Four steps. Infinite intelligence. From signup to delivery — AI guides the way." },
-    ],
-  }),
-});
 
 const steps = [
   {
@@ -118,3 +105,5 @@ function HowItWorks() {
     </SiteLayout>
   );
 }
+
+export default HowItWorks;

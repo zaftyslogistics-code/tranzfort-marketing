@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Bot, MapPin, ScanLine, TrendingUp, Sparkles, Zap, Mic, ShieldCheck,
@@ -6,18 +6,6 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/features")({
-  component: FeaturesPage,
-  head: () => ({
-    meta: [
-      { title: "Features — AI Logistics That Actually Works | TranZfort" },
-      { name: "description", content: "Explore TranZfort's full AI stack: route planning, load matching, LR scanner, voice assistant, price intelligence — all working offline on your phone." },
-      { property: "og:title", content: "TranZfort Features — Built for Indian Logistics" },
-      { property: "og:description", content: "12+ AI capabilities working together to make logistics faster, cheaper, smarter — online or offline." },
-    ],
-  }),
-});
 
 const heroFeatures = [
   {
@@ -151,3 +139,5 @@ function FeaturesPage() {
     </SiteLayout>
   );
 }
+
+export default FeaturesPage;

@@ -1,19 +1,7 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/pricing")({
-  component: PricingPage,
-  head: () => ({
-    meta: [
-      { title: "Pricing — Free for Drivers & Suppliers | TranZfort" },
-      { name: "description", content: "TranZfort is free for individual drivers and suppliers. Affordable plans for fleets and enterprises with custom AI workflows." },
-      { property: "og:title", content: "TranZfort Pricing" },
-      { property: "og:description", content: "Free for drivers and suppliers. Pro plans for fleets. Enterprise for custom AI." },
-    ],
-  }),
-});
 
 const plans = [
   {
@@ -137,3 +125,5 @@ function PricingPage() {
     </SiteLayout>
   );
 }
+
+export default PricingPage;

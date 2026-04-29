@@ -1,22 +1,10 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Smartphone, Apple, Play, QrCode, ArrowRight, Check, WifiOff, Mic, Languages, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
 import screen from "@/assets/screen-chat.jpg";
-
-export const Route = createFileRoute("/download")({
-  component: DownloadPage,
-  head: () => ({
-    meta: [
-      { title: "Download TranZfort — AI Logistics App for Android & iOS" },
-      { name: "description", content: "Download TranZfort on Android or iOS. Free forever. Offline-ready AI logistics for suppliers and truckers across India." },
-      { property: "og:title", content: "Download TranZfort" },
-      { property: "og:description", content: "Free forever. Works offline. Hindi & English voice. Get the app now." },
-    ],
-  }),
-});
 
 function DownloadPage() {
   return (
@@ -124,3 +112,5 @@ function DownloadPage() {
     </SiteLayout>
   );
 }
+
+export default DownloadPage;

@@ -1,22 +1,10 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Bot, Mic, WifiOff, Languages, Cpu, Lock, ArrowRight, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
 import screen from "@/assets/screen-chat.jpg";
-
-export const Route = createFileRoute("/ai-assistant")({
-  component: AIPage,
-  head: () => ({
-    meta: [
-      { title: "TranZfort AI Assistant — Local. Offline. Bilingual." },
-      { name: "description", content: "Meet your local AI co-driver. On-device, offline, with Hindi & English voice. No cloud, no lag, no roaming charges." },
-      { property: "og:title", content: "The TranZfort AI Assistant" },
-      { property: "og:description", content: "On-device AI for Indian logistics. Voice-first. Offline-first. Bilingual." },
-    ],
-  }),
-});
 
 const pillars = [
   { icon: Cpu, t: "Local On-Device AI", d: "Runs entirely on your phone using a tuned small-language-model. No round-trip to a server. Sub-100ms responses, every time." },
@@ -138,3 +126,5 @@ function AIPage() {
     </SiteLayout>
   );
 }
+
+export default AIPage;

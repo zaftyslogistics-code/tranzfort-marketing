@@ -1,22 +1,10 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, TrendingUp, Bot, ShieldCheck, BarChart3, Bell, FileCheck } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
 import screen from "@/assets/screen-supplier.jpg";
-
-export const Route = createFileRoute("/for-suppliers")({
-  component: SuppliersPage,
-  head: () => ({
-    meta: [
-      { title: "For Suppliers — Post Loads, AI Finds the Trucker | TranZfort" },
-      { name: "description", content: "Stop chasing brokers. Post a load on TranZfort and let AI match you to verified truckers in seconds — at the right price, with full visibility." },
-      { property: "og:title", content: "TranZfort for Suppliers" },
-      { property: "og:description", content: "AI matching · fair pricing · verified truckers · live tracking. Free for suppliers." },
-    ],
-  }),
-});
 
 function SuppliersPage() {
   return (
@@ -133,3 +121,5 @@ function SuppliersPage() {
     </SiteLayout>
   );
 }
+
+export default SuppliersPage;

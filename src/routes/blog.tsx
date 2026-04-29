@@ -1,20 +1,8 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/blog")({
-  component: BlogPage,
-  head: () => ({
-    meta: [
-      { title: "Blog — Stories from India's AI Logistics Frontier | TranZfort" },
-      { name: "description", content: "Insights on AI in logistics, driver stories from across India, and product updates from the TranZfort team." },
-      { property: "og:title", content: "TranZfort Blog" },
-      { property: "og:description", content: "AI, logistics, and life on the highway. Fresh stories from the TranZfort team." },
-    ],
-  }),
-});
 
 const posts = [
   { tag: "AI", date: "April 12, 2026", title: "How we shipped a 1B-parameter logistics model that runs offline", excerpt: "Inside the engineering journey of getting a tuned SLM to run on entry-level Android phones — without a single cloud round-trip." },
@@ -109,3 +97,5 @@ function BlogPage() {
     </SiteLayout>
   );
 }
+
+export default BlogPage;
