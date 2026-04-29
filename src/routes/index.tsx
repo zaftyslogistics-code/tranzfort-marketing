@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Bot, WifiOff, Mic, Languages, MapPin, ScanLine,
@@ -12,17 +12,7 @@ import screenRoute from "@/assets/screen-route.jpg";
 import screenSupplier from "@/assets/screen-supplier.jpg";
 import screenScanner from "@/assets/screen-scanner.jpg";
 
-export const Route = createFileRoute("/")({
-  component: Home,
-  head: () => ({
-    meta: [
-      { title: "TranZfort — AI-Powered Logistics That Works Offline" },
-      { name: "description", content: "India's first offline-first AI logistics network. Voice in Hindi & English, smart routes, instant load matching, and a chat assistant — all on-device." },
-    ],
-  }),
-});
-
-function Home() {
+export default function Home() {
   return (
     <SiteLayout>
       <Hero />
@@ -64,7 +54,7 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-orange-glow opacity-75 animate-pulse-ring" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-orange" />
               </span>
-              <span className="text-xs uppercase tracking-[0.2em] text-white/80">Live · On-device AI</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-white/80">Live | On-device AI</span>
             </motion.div>
 
             <motion.h1
@@ -72,7 +62,7 @@ function Hero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight"
             >
-              India's first <span className="text-gradient-brand">AI logistics</span> network — that works offline.
+              India's smartest <span className="text-gradient-brand">AI logistics</span> platform - works anywhere, anytime.
             </motion.h1>
 
             <motion.p
@@ -80,7 +70,7 @@ function Hero() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="mt-6 text-lg text-white/75 max-w-xl"
             >
-              AI suggests routes. AI finds loads. AI listens in Hindi & English. All running locally on your phone — no signal needed.
+              AI suggests routes. AI finds loads. AI listens in Hindi & English. All running locally on your phone - no signal needed.
             </motion.p>
 
             <motion.div
@@ -109,7 +99,7 @@ function Hero() {
             >
               <div className="flex items-center gap-2"><WifiOff className="h-4 w-4 text-teal-glow" /> Offline-first</div>
               <div className="flex items-center gap-2"><Mic className="h-4 w-4 text-teal-glow" /> Voice TTS/STT</div>
-              <div className="flex items-center gap-2"><Languages className="h-4 w-4 text-teal-glow" /> हिंदी · English</div>
+              <div className="flex items-center gap-2"><Languages className="h-4 w-4 text-teal-glow" /> हिंदी | English</div>
             </motion.div>
           </div>
 
@@ -155,9 +145,9 @@ function Hero() {
         <div className="flex animate-marquee whitespace-nowrap gap-12 text-white/40 text-sm uppercase tracking-[0.3em]">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12">
-              <span>· On-device AI</span><span>· Hindi Voice</span><span>· English Voice</span>
-              <span>· Smart Routes</span><span>· Load Matching</span><span>· LR Scanner</span>
-              <span>· Offline-first</span><span>· Made in India</span>
+              <span>| On-device AI</span><span>| Hindi Voice</span><span>| English Voice</span>
+              <span>| Smart Routes</span><span>| Load Matching</span><span>| LR Scanner</span>
+              <span>| Offline-first</span><span>| Made in India</span>
             </div>
           ))}
         </div>
@@ -215,13 +205,13 @@ function OfflineAI() {
             Full intelligence.
           </h2>
           <p className="mt-5 text-lg text-ink-soft max-w-lg">
-            Most "AI apps" die without internet. TranZfort's intelligence runs <strong>directly on your phone</strong> — chat,
-            scan, route, translate — even on a remote highway with no bars.
+            Most "AI apps" die without internet. TranZfort's intelligence runs <strong>directly on your phone</strong> - chat,
+            scan, route, translate - even on a remote highway with no bars.
           </p>
 
           <div className="mt-8 space-y-3">
             {[
-              { icon: WifiOff, t: "Works in dead zones", d: "Highways, tunnels, rural India — AI keeps working." },
+              { icon: WifiOff, t: "Works in dead zones", d: "Highways, tunnels, rural India - AI keeps working." },
               { icon: Languages, t: "हिंदी & English voice", d: "Native TTS & STT. Speak naturally, type if you want." },
               { icon: ShieldCheck, t: "Your data stays on-device", d: "Sensitive load info never leaves your phone unless you sync." },
             ].map((x, i) => (
@@ -320,7 +310,7 @@ function DemoSection() {
     { who: "user", text: "Find loads near Pune for tomorrow" },
     { who: "ai", text: "Found 12 matches. Top: Steel coils, Pune → Mumbai, ₹28,000. Route saves you 1.5 hrs via NH4." },
     { who: "user", text: "रास्ता दिखाओ" },
-    { who: "ai", text: "✓ Showing optimal route with 2 fuel stops. Total: 148 km · ETA 3h 12m." },
+    { who: "ai", text: "✓ Showing optimal route with 2 fuel stops. Total: 148 km | ETA 3h 12m." },
   ];
   return (
     <section className="py-24 lg:py-32 bg-gradient-dark text-white relative overflow-hidden">
@@ -336,7 +326,7 @@ function DemoSection() {
           <div className="lg:col-span-3 rounded-3xl bg-white/5 backdrop-blur border border-white/10 p-6 lg:p-8">
             <div className="flex items-center gap-2 mb-6">
               <div className="h-2 w-2 rounded-full bg-orange animate-pulse" />
-              <span className="text-xs uppercase tracking-[0.2em] text-white/60">AI Chat · Live</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-white/60">AI Chat | Live</span>
             </div>
             <div className="space-y-3">
               {messages.map((m, i) => (
@@ -385,7 +375,7 @@ function DualPersona() {
         <PersonaBlock
           eyebrow="For Suppliers"
           title="Post a load. AI finds the trucker."
-          desc="Smart pricing, AI matching, and live insights help you ship more — for less."
+          desc="Smart pricing, AI matching, and live insights help you ship more - for less."
           bullets={["AI auto-suggests fair pricing", "Smart matching learns preferences", "Live price insights"]}
           screen={screenSupplier}
           reverse={false}
@@ -395,7 +385,7 @@ function DualPersona() {
           eyebrow="For Truckers"
           title="Ask AI. Get loads. Never drive empty."
           desc="Find return loads, optimize routes, and let AI handle paperwork on the go."
-          bullets={["Route AI saves diesel & time", "Return load finder for empty trips", "Voice-first — drive safe"]}
+          bullets={["Route AI saves diesel & time", "Return load finder for empty trips", "Voice-first - drive safe"]}
           screen={screenRoute}
           reverse={true}
           accent="orange"
@@ -537,7 +527,7 @@ function CTASection() {
                 Ready to move <span className="text-gradient-brand">smarter</span>?
               </h2>
               <p className="mt-4 text-lg text-white/75 max-w-md">
-                Download TranZfort. Start with AI-powered loads, smart routes, and offline voice — free forever.
+                Download TranZfort. Start with AI-powered loads, smart routes, and offline voice - free forever.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 lg:justify-end">
