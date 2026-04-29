@@ -61,6 +61,13 @@ jobs:
             echo "✅ FTP_PATH is set"
           fi
 
+      - name: List files in dist before upload
+        run: |
+          echo "=== Files in dist/ ==="
+          ls -la dist/
+          echo "=== Files in dist/assets/ ==="
+          ls -la dist/assets/ || echo "No assets directory"
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
