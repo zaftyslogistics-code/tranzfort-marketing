@@ -34,7 +34,7 @@ export function Footer() {
         <div className="grid md:grid-cols-5 gap-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5">
-              <img src={footerLogo} alt="TranZfort Logo" className="h-10" />
+              <img src={footerLogo} alt="TranZfort Logo" width={40} height={40} className="h-10" />
               <div className="leading-tight">
                 <div className="font-display font-bold text-lg tracking-tight text-white">
                   Tran<span className="text-gradient-brand">Zfort</span>

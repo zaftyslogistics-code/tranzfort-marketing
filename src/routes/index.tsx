@@ -115,7 +115,7 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="absolute left-0 top-10 z-10"
             >
-              <PhoneFrame src={screenSupplier} alt="Supplier app screen" className="!w-[200px] animate-float" />
+              <PhoneFrame src={screenSupplier} alt="Supplier app screen" className="!w-[200px] animate-float" fetchPriority="high" />
             </motion.div>
 
             <motion.div
@@ -123,7 +123,7 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="absolute left-1/2 -translate-x-1/2 top-0 z-20"
             >
-              <PhoneFrame src={screenChat} alt="AI chat assistant" className="!w-[240px]" />
+              <PhoneFrame src={screenChat} alt="AI chat assistant" className="!w-[240px]" fetchPriority="high" />
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-orange">
                 AI Assistant
               </div>
@@ -134,7 +134,7 @@ function Hero() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="absolute right-0 top-10 z-10"
             >
-              <PhoneFrame src={screenRoute} alt="Route AI screen" className="!w-[200px] animate-float" />
+              <PhoneFrame src={screenRoute} alt="Route AI screen" className="!w-[200px] animate-float" fetchPriority="high" />
             </motion.div>
           </div>
         </div>
