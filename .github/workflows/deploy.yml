@@ -75,4 +75,7 @@ jobs:
           max_attempts: 3
           command: |
             sudo apt-get install -y sshpass
+            echo "Deploying to: ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}"
             sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}
+            echo "Listing remote directory after deployment:"
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}"
