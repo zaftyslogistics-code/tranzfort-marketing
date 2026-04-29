@@ -6,6 +6,11 @@ on:
       - main
       - migrate-to-vite-react-router
   workflow_dispatch:
+    inputs:
+      test_mode:
+        description: 'Test mode (skip deployment)'
+        required: false
+        default: 'false'
 
 jobs:
   build-and-deploy:
@@ -29,12 +34,32 @@ jobs:
         env:
           CI: false
 
-      - name: Debug secrets
+      - name: Test secret access
         run: |
-          echo "FTP_HOST is set: ${{ secrets.FTP_HOST != '' }}"
-          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
-          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
-          echo "FTP_REMOTE_PATH is set: ${{ secrets.FTP_REMOTE_PATH != '' }}"
+          if [ -z "${{ secrets.FTP_HOST }}" ]; then
+            echo "❌ FTP_HOST secret is missing"
+            exit 1
+          else
+            echo "✅ FTP_HOST is set"
+          fi
+          if [ -z "${{ secrets.FTP_USERNAME }}" ]; then
+            echo "❌ FTP_USERNAME secret is missing"
+            exit 1
+          else
+            echo "✅ FTP_USERNAME is set"
+          fi
+          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
+            echo "❌ FTP_PASSWORD secret is missing"
+            exit 1
+          else
+            echo "✅ FTP_PASSWORD is set"
+          fi
+          if [ -z "${{ secrets.FTP_REMOTE_PATH }}" ]; then
+            echo "❌ FTP_REMOTE_PATH secret is missing"
+            exit 1
+          else
+            echo "✅ FTP_REMOTE_PATH is set"
+          fi
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -44,3 +69,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist
           server-dir: ${{ secrets.FTP_REMOTE_PATH }}
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
