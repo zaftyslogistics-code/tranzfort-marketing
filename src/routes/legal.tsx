@@ -1,26 +1,8 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Shield, FileText, Cookie, Mail, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/legal")({
-  component: LegalPage,
-  head: () => ({
-    meta: [
-      { title: "Legal — Privacy, Terms & Policies | TranZfort" },
-      {
-        name: "description",
-        content: "Read TranZfort's privacy policy, terms of service, and data handling practices.",
-      },
-      { property: "og:title", content: "TranZfort Legal & Privacy" },
-      {
-        property: "og:description",
-        content: "How we handle your data, our terms of service, and policies.",
-      },
-    ],
-  }),
-});
 
 function LegalPage() {
   return (
@@ -137,3 +119,5 @@ function LegalPage() {
     </SiteLayout>
   );
 }
+
+export default LegalPage;
