@@ -1,20 +1,7 @@
-import { createFileRoute } from "react-router-dom";
 import { useState } from "react";
 import { Mail, Phone, MapPin, MessageSquare, Clock, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/contact")({
-  component: ContactPage,
-  head: () => ({
-    meta: [
-      { title: "Contact TranZfort — Talk to Us in Hindi or English" },
-      { name: "description", content: "Sales, partnerships, support — pick your channel. We respond within one business day in Hindi or English." },
-      { property: "og:title", content: "Contact TranZfort" },
-      { property: "og:description", content: "Sales, partnerships, support — we're here." },
-    ],
-  }),
-});
 
 function ContactPage() {
   const [sent, setSent] = useState(false);
@@ -106,3 +93,5 @@ function Field({ label, id, type = "text", placeholder }: { label: string; id: s
     </div>
   );
 }
+
+export default ContactPage;
