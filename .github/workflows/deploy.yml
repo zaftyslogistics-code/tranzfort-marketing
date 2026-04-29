@@ -65,15 +65,15 @@ jobs:
         run: |
           echo "=== Files in dist/ ==="
           ls -la dist/
-          echo "=== Files in dist/assets/ ==="
-          ls -la dist/assets/ || echo "No assets directory"
+          echo "=== Files in dist/client/ ==="
+          ls -la dist/client/ || echo "No client directory"
+          echo "=== Files in dist/server/ ==="
+          ls -la dist/server/ || echo "No server directory"
 
       - name: Deploy to Hostinger via SSH using rsync
         run: |
           sudo apt-get install -y sshpass rsync
-          echo "=== Deploying index.html ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/index.html ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
-          echo "=== Deploying client files ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/client/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
+          echo "=== Deploying all files from dist/ ==="
+          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
           echo "=== Listing uploaded files ==="
           sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
