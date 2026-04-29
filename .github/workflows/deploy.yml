@@ -36,29 +36,29 @@ jobs:
 
       - name: Test secret access
         run: |
-          if [ -z "${{ secrets.FTP_SERVER }}" ]; then
-            echo "❌ FTP_SERVER secret is missing"
+          if [ -z "${{ secrets.SSH_HOST }}" ]; then
+            echo "❌ SSH_HOST secret is missing"
             exit 1
           else
-            echo "✅ FTP_SERVER is set"
+            echo "✅ SSH_HOST is set"
           fi
-          if [ -z "${{ secrets.FTP_USERNAME }}" ]; then
-            echo "❌ FTP_USERNAME secret is missing"
+          if [ -z "${{ secrets.SSH_USERNAME }}" ]; then
+            echo "❌ SSH_USERNAME secret is missing"
             exit 1
           else
-            echo "✅ FTP_USERNAME is set"
+            echo "✅ SSH_USERNAME is set"
           fi
-          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
-            echo "❌ FTP_PASSWORD secret is missing"
+          if [ -z "${{ secrets.SSH_PASSWORD }}" ]; then
+            echo "❌ SSH_PASSWORD secret is missing"
             exit 1
           else
-            echo "✅ FTP_PASSWORD is set"
+            echo "✅ SSH_PASSWORD is set"
           fi
-          if [ -z "${{ secrets.FTP_PATH }}" ]; then
-            echo "❌ FTP_PATH secret is missing"
+          if [ -z "${{ secrets.SSH_REMOTE_PATH }}" ]; then
+            echo "❌ SSH_REMOTE_PATH secret is missing"
             exit 1
           else
-            echo "✅ FTP_PATH is set"
+            echo "✅ SSH_REMOTE_PATH is set"
           fi
 
       - name: List files in dist before upload
@@ -68,12 +68,12 @@ jobs:
           echo "=== Files in dist/assets/ ==="
           ls -la dist/assets/ || echo "No assets directory"
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy to Hostinger via SSH
+        uses: easingthemes/ssh-deploy@v4.1.8
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_PATH }}/
-          timeout: 300000
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PASSWORD }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_PORT: 65002
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          TARGET: ${{ secrets.SSH_REMOTE_PATH }}
+          SOURCE: dist/
