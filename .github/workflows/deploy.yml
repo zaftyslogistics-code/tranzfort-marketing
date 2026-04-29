@@ -69,9 +69,13 @@ jobs:
           ls -la dist/assets/ || echo "No assets directory"
 
       - name: Deploy to Hostinger via SSH using rsync
-        run: |
-          sudo apt-get install -y sshpass rsync
-          echo "=== Deploying dist/ to public_html ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
-          echo "=== Listing uploaded files ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 15
+          max_attempts: 5
+          command: |
+            sudo apt-get install -y sshpass rsync
+            echo "=== Deploying dist/ to public_html ==="
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 65002" ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
+            echo "=== Listing uploaded files ==="
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
