@@ -77,7 +77,7 @@ jobs:
             sudo apt-get install -y sshpass
             echo "=== Current dist contents ==="
             ls -la dist/
-            echo "=== Attempting SCP to exact path ==="
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
+            echo "=== Copying dist contents to target ==="
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
             echo "=== Verifying upload ==="
             sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
