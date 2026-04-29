@@ -1,19 +1,7 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Search, Smartphone, CreditCard, ShieldCheck, Truck, Settings, MessageSquare, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/help")({
-  component: HelpPage,
-  head: () => ({
-    meta: [
-      { title: "Help Center — Get Support in Hindi or English | TranZfort" },
-      { name: "description", content: "Find answers about getting started, accounts, payments, and using AI features. 24/7 support in Hindi and English." },
-      { property: "og:title", content: "TranZfort Help Center" },
-      { property: "og:description", content: "Self-serve answers and 24/7 support in Hindi & English." },
-    ],
-  }),
-});
 
 const categories = [
   { icon: Smartphone, t: "Getting Started", d: "Install, sign up, KYC and your first trip." },
@@ -113,3 +101,5 @@ function HelpPage() {
     </SiteLayout>
   );
 }
+
+export default HelpPage;
