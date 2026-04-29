@@ -13,7 +13,7 @@ function AboutPage() {
       />
 
       {/* Story */}
-      <section className="py-20 bg-background">
+      <section id="story" className="py-20 bg-background">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 space-y-6">
           <p className="text-lg text-ink-soft leading-relaxed">
             India moves <strong className="text-ink">4.6 billion tonnes</strong> of freight every year, mostly via road.
@@ -29,7 +29,7 @@ function AboutPage() {
       </section>
 
       {/* Mission / vision / values */}
-      <section className="py-20 bg-muted/40">
+      <section id="mission" className="py-20 bg-muted/40">
         <div className="max-w-6xl mx-auto px-5 lg:px-8">
           <div className="grid md:grid-cols-3 gap-5">
             <Card icon={Target} title="Mission" body="Put a world-class AI logistics platform in the hands of every supplier and driver in India — for free." />
@@ -40,7 +40,7 @@ function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-background">
+      <section id="values" className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold">What we believe.</h2>
@@ -64,7 +64,7 @@ function AboutPage() {
       </section>
 
       {/* By the numbers */}
-      <section className="py-20 bg-gradient-brand text-white">
+      <section id="stats" className="py-20 bg-gradient-brand text-white">
         <div className="max-w-5xl mx-auto px-5 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
             { v: "4.6B", l: "Tonnes moved annually in India" },
@@ -80,7 +80,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section id="cta" className="py-20 bg-background">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold">Want to join us?</h2>
           <p className="mt-3 text-ink-soft">We're always looking for engineers, designers and operators who care about Bharat.</p>

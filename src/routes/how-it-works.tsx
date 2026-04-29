@@ -36,7 +36,7 @@ function HowItWorks() {
       />
 
       {/* Steps */}
-      <section className="py-20 lg:py-28 bg-background">
+      <section id="steps" className="py-20 lg:py-28 bg-background">
         <div className="max-w-6xl mx-auto px-5 lg:px-8 space-y-12">
           {steps.map((s, i) => (
             <motion.div key={i}
@@ -76,7 +76,7 @@ function HowItWorks() {
       </section>
 
       {/* What you need */}
-      <section className="py-20 bg-muted/40">
+      <section id="requirements" className="py-20 bg-muted/40">
         <div className="max-w-5xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold">All you need to start.</h2>

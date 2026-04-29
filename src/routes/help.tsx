@@ -43,7 +43,7 @@ function HelpPage() {
       </PageHero>
 
       {/* Categories */}
-      <section className="py-20 bg-background">
+      <section id="categories" className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-xl mx-auto">
             <h2 className="text-3xl font-bold">Browse by topic</h2>
@@ -67,7 +67,7 @@ function HelpPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-muted/40">
+      <section id="faq" className="py-20 bg-muted/40">
         <div className="max-w-4xl mx-auto px-5 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl lg:text-4xl font-bold">Common questions</h2>
@@ -87,7 +87,7 @@ function HelpPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section id="cta" className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-5 lg:px-8">
           <div className="rounded-3xl bg-gradient-brand text-white p-10 text-center">
             <h2 className="text-3xl font-bold">Still need help?</h2>
