@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Logo } from "./Logo";
@@ -19,16 +19,13 @@ export function Navbar() {
         <Logo />
         <nav className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
-            <Link
+            <NavLink
               key={l.to}
               to={l.to}
-              className="px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink rounded-lg transition-colors"
-              activeProps={{
-                className: "px-4 py-2 text-sm font-medium text-ink rounded-lg bg-accent",
-              }}
+              className={({ isActive }) => `px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink rounded-lg transition-colors ${isActive ? "bg-accent text-ink" : ""}`}
             >
               {l.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
         <div className="flex items-center gap-2">

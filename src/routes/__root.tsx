@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "react-router-dom";
 
 import appCss from "../styles.css?url";
 import favicon from "../assets/footer.png";

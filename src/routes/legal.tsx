@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "react-router-dom";
 import { Shield, FileText, Cookie, Mail, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/Layout";

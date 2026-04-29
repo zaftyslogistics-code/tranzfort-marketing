@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Bot, Mic, WifiOff, Languages, Cpu, Lock, ArrowRight, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "react-router-dom";
 import { useState } from "react";
 import { Mail, Phone, MapPin, MessageSquare, Clock, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
