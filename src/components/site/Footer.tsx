@@ -50,7 +50,7 @@ export function Footer() {
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
                   className="h-10 w-10 rounded-full bg-white/5 border border-white/10 hover:bg-gradient-brand hover:border-transparent flex items-center justify-center transition-all">
                   <SocialIcon d={s.svg} />
                 </a>
