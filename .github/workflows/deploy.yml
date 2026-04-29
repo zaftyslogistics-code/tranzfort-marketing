@@ -29,6 +29,13 @@ jobs:
         env:
           CI: false
 
+      - name: Debug secrets
+        run: |
+          echo "FTP_HOST is set: ${{ secrets.FTP_HOST != '' }}"
+          echo "FTP_USERNAME is set: ${{ secrets.FTP_USERNAME != '' }}"
+          echo "FTP_PASSWORD is set: ${{ secrets.FTP_PASSWORD != '' }}"
+          echo "FTP_REMOTE_PATH is set: ${{ secrets.FTP_REMOTE_PATH != '' }}"
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
