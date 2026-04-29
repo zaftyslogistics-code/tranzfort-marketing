@@ -62,7 +62,7 @@ function Hero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight"
             >
-              SIMPLE VITE - <span className="text-gradient-brand">AI logistics</span> platform
+              India's first <span className="text-gradient-brand">AI logistics</span> network - that works offline.
             </motion.h1>
 
             <motion.p
