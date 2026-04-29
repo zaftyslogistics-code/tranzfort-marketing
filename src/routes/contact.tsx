@@ -60,11 +60,11 @@ function ContactPage() {
           {/* Contact info */}
           <div className="space-y-4">
             {[
-              { icon: Mail, t: "Email", d: "support@tranzfort.com", sub: "Reply within 24 hours" },
-              { icon: Phone, t: "Phone", d: "+91-927-092-3581", sub: "Mon-Sat · 9am-7pm IST" },
-              { icon: MessageSquare, t: "WhatsApp Support", d: "+91-927-092-3581", sub: "Hindi & English · 24/7" },
-              { icon: MapPin, t: "Headquarters", d: "World Trade Center, Kharadi", sub: "Pune, India - 411014" },
-              { icon: Clock, t: "Support Hours", d: "24/7 in-app support", sub: "Live chat in Hindi & English" },
+              { icon: Mail, t: "Email", d: "support@tranzfort.com", sub: "Reply within 24 hours", href: "mailto:support@tranzfort.com" },
+              { icon: Phone, t: "Phone", d: "+91-927-092-3581", sub: "Mon-Sat · 9am-7pm IST", href: "tel:+91-927-092-3581" },
+              { icon: MessageSquare, t: "WhatsApp Support", d: "+91-927-092-3581", sub: "Hindi & English · 24/7", href: "tel:+91-927-092-3581" },
+              { icon: MapPin, t: "Headquarters", d: "World Trade Center, Kharadi", sub: "Pune, India - 411014", href: null },
+              { icon: Clock, t: "Support Hours", d: "24/7 in-app support", sub: "Live chat in Hindi & English", href: null },
             ].map((x) => (
               <div key={x.t} className="p-5 rounded-2xl bg-card border border-border shadow-soft flex gap-4">
                 <div className="h-11 w-11 rounded-2xl bg-gradient-brand text-white flex items-center justify-center shrink-0">
@@ -72,7 +72,11 @@ function ContactPage() {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-wider text-ink-soft">{x.t}</div>
-                  <div className="font-bold mt-0.5">{x.d}</div>
+                  {x.href ? (
+                    <a href={x.href} className="font-bold mt-0.5 hover:text-teal transition-colors">{x.d}</a>
+                  ) : (
+                    <div className="font-bold mt-0.5">{x.d}</div>
+                  )}
                   <div className="text-sm text-ink-soft">{x.sub}</div>
                 </div>
               </div>
