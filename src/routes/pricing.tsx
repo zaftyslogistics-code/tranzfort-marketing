@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
@@ -33,6 +34,39 @@ const plans = [
 function PricingPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              "name": "TranZfort Fleet Pro",
+              "description": "For small to mid-sized fleets that want dispatcher dashboards and analytics.",
+              "brand": {
+                "@type": "Brand",
+                "name": "TranZfort"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "999",
+                "priceCurrency": "INR",
+                "availability": "https://schema.org/InStock",
+                "url": "https://tranzfort.com/pricing",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "TranZfort Technologies Pvt. Ltd."
+                }
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "8500"
+              }
+            }, null, 2)
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="Pricing"
         title={<>Free for the people who <span className="text-gradient-brand">move India</span>.</>}
