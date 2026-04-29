@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Mail, Phone, MapPin, MessageSquare, Clock, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,6 +8,49 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
   return (
     <SiteLayout>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "TranZfort Technologies Pvt. Ltd.",
+              "description": "India's first offline-first, AI-powered logistics network for truckers and suppliers.",
+              "url": "https://tranzfort.com",
+              "telephone": "+91-927-092-3581",
+              "email": "support@tranzfort.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "World Trade Center, Kharadi",
+                "addressLocality": "Pune",
+                "addressRegion": "Maharashtra",
+                "postalCode": "411014",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "18.5483",
+                "longitude": "73.9340"
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday"
+                ],
+                "opens": "09:00",
+                "closes": "19:00"
+              },
+              "priceRange": "₹₹"
+            }, null, 2)
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="Contact"
         title={<>Let's <span className="text-gradient-brand">talk logistics.</span></>}
