@@ -1,19 +1,7 @@
-import { createFileRoute, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Target, Heart, Globe2, Users, Zap, Shield, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
-
-export const Route = createFileRoute("/about")({
-  component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About TranZfort — Building India's AI Logistics Future" },
-      { name: "description", content: "Our mission is to make Indian logistics smarter, fairer and accessible to every driver and supplier — with on-device AI that works in any village, any highway, any tunnel." },
-      { property: "og:title", content: "About TranZfort" },
-      { property: "og:description", content: "Building the AI logistics layer for the country that moves the world." },
-    ],
-  }),
-});
 
 function AboutPage() {
   return (
@@ -118,3 +106,5 @@ function Card({ icon: Icon, title, body }: { icon: typeof Target; title: string;
     </div>
   );
 }
+
+export default AboutPage;
