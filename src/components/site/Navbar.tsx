@@ -9,6 +9,7 @@ const links = [
   { to: "/for-suppliers", label: "Suppliers" },
   { to: "/for-truckers", label: "Truckers" },
   { to: "/ai-assistant", label: "AI Assistant" },
+  { to: "/blog", label: "Blog" },
 ];
 
 export function Navbar() {
