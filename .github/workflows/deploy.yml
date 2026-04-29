@@ -36,11 +36,11 @@ jobs:
 
       - name: Test secret access
         run: |
-          if [ -z "${{ secrets.FTP_HOST }}" ]; then
-            echo "❌ FTP_HOST secret is missing"
+          if [ -z "${{ secrets.FTP_SERVER }}" ]; then
+            echo "❌ FTP_SERVER secret is missing"
             exit 1
           else
-            echo "✅ FTP_HOST is set"
+            echo "✅ FTP_SERVER is set"
           fi
           if [ -z "${{ secrets.FTP_USERNAME }}" ]; then
             echo "❌ FTP_USERNAME secret is missing"
@@ -54,23 +54,18 @@ jobs:
           else
             echo "✅ FTP_PASSWORD is set"
           fi
-          if [ -z "${{ secrets.FTP_REMOTE_PATH }}" ]; then
-            echo "❌ FTP_REMOTE_PATH secret is missing"
+          if [ -z "${{ secrets.FTP_PATH }}" ]; then
+            echo "❌ FTP_PATH secret is missing"
             exit 1
           else
-            echo "✅ FTP_REMOTE_PATH is set"
+            echo "✅ FTP_PATH is set"
           fi
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist
-          server-dir: ${{ secrets.FTP_REMOTE_PATH }}
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_REMOTE_PATH: ${{ secrets.FTP_REMOTE_PATH }}
+          server-dir: ${{ secrets.FTP_PATH }}
