@@ -36,34 +36,30 @@ jobs:
 
       - name: Test secret access
         run: |
-          if [ -z "${{ secrets.SSH_HOST }}" ]; then
-            echo "❌ SSH_HOST secret is missing"
+          if [ -z "${{ secrets.FTP_SERVER }}" ]; then
+            echo "❌ FTP_SERVER secret is missing"
             exit 1
           else
-            echo "✅ SSH_HOST is set"
+            echo "✅ FTP_SERVER is set"
           fi
-          if [ -z "${{ secrets.SSH_USERNAME }}" ]; then
-            echo "❌ SSH_USERNAME secret is missing"
+          if [ -z "${{ secrets.FTP_USERNAME }}" ]; then
+            echo "❌ FTP_USERNAME secret is missing"
             exit 1
           else
-            echo "✅ SSH_USERNAME is set"
+            echo "✅ FTP_USERNAME is set"
           fi
-          if [ -z "${{ secrets.SSH_PASSWORD }}" ]; then
-            echo "❌ SSH_PASSWORD secret is missing"
+          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then
+            echo "❌ FTP_PASSWORD secret is missing"
             exit 1
           else
-            echo "✅ SSH_PASSWORD is set"
+            echo "✅ FTP_PASSWORD is set"
           fi
-          if [ -z "${{ secrets.SSH_REMOTE_PATH }}" ]; then
-            echo "❌ SSH_REMOTE_PATH secret is missing"
+          if [ -z "${{ secrets.FTP_PATH }}" ]; then
+            echo "❌ FTP_PATH secret is missing"
             exit 1
           else
-            echo "✅ SSH_REMOTE_PATH is set"
+            echo "✅ FTP_PATH is set"
           fi
-
-      - name: Add test directory secret for debugging
-        run: |
-          echo "Testing deployment to alternate directory"
 
       - name: List files in dist before upload
         run: |
@@ -72,15 +68,12 @@ jobs:
           echo "=== Files in dist/assets/ ==="
           ls -la dist/assets/ || echo "No assets directory"
 
-      - name: Deploy to Hostinger via SSH with password
-        uses: nick-fields/retry@v3
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: |
-            sudo apt-get install -y sshpass
-            echo "=== Testing deployment to /tmp directory ==="
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "mkdir -p /tmp/test_deploy"
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/test_deploy/
-            echo "=== Listing /tmp/test_deploy ==="
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la /tmp/test_deploy/"
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_PATH }}/
+          timeout: 300000
