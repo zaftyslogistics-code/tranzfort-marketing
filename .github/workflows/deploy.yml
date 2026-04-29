@@ -71,8 +71,7 @@ jobs:
       - name: Deploy to Hostinger via SSH using rsync
         run: |
           sudo apt-get install -y sshpass rsync
-          echo "=== Deploying to home directory for testing ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "mkdir -p ~/test_deploy"
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/test_deploy/
+          echo "=== Deploying to public_html via rsync ==="
+          sshpass -p '${{ secrets.SSH_PASSWORD }}' rsync -avz -e "ssh -o StrictHostKeyChecking=no -p 65002" ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
           echo "=== Listing uploaded files ==="
-          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ~/test_deploy/"
+          sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
