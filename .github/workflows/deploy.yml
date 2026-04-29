@@ -61,6 +61,10 @@ jobs:
             echo "✅ SSH_REMOTE_PATH is set"
           fi
 
+      - name: Add test directory secret for debugging
+        run: |
+          echo "Testing deployment to alternate directory"
+
       - name: List files in dist before upload
         run: |
           echo "=== Files in dist/ ==="
@@ -75,9 +79,8 @@ jobs:
           max_attempts: 3
           command: |
             sudo apt-get install -y sshpass
-            echo "=== Current dist contents ==="
-            ls -la dist/
-            echo "=== Copying dist contents to target ==="
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_REMOTE_PATH }}/
-            echo "=== Verifying upload ==="
-            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la ${{ secrets.SSH_REMOTE_PATH }}/"
+            echo "=== Testing deployment to /tmp directory ==="
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "mkdir -p /tmp/test_deploy"
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' scp -o StrictHostKeyChecking=no -P 65002 -r dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/test_deploy/
+            echo "=== Listing /tmp/test_deploy ==="
+            sshpass -p '${{ secrets.SSH_PASSWORD }}' ssh -o StrictHostKeyChecking=no -p 65002 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "ls -la /tmp/test_deploy/"
