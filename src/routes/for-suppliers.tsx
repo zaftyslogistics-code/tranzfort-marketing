@@ -20,7 +20,7 @@ function SuppliersPage() {
       </PageHero>
 
       {/* Pain → solution */}
-      <section className="py-20 lg:py-24 bg-background">
+      <section id="comparison" className="py-20 lg:py-24 bg-background">
         <div className="max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div className="p-8 rounded-3xl bg-muted/60 border border-border">
             <div className="text-xs uppercase tracking-[0.22em] text-ink-soft font-semibold">The old way</div>
@@ -48,7 +48,7 @@ function SuppliersPage() {
       </section>
 
       {/* Phone + features */}
-      <section className="py-20 lg:py-28 bg-muted/30">
+      <section id="features" className="py-20 lg:py-28 bg-muted/30">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }} whileInView={{ opacity: 1, scale: 1 }}
@@ -86,7 +86,7 @@ function SuppliersPage() {
       </section>
 
       {/* Made for */}
-      <section className="py-20 bg-background">
+      <section id="made-for" className="py-20 bg-background">
         <div className="max-w-6xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold">Built for every kind of supplier.</h2>
@@ -108,7 +108,7 @@ function SuppliersPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-dark text-white">
+      <section id="cta" className="py-20 bg-gradient-dark text-white">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold">Ready to move smarter?</h2>
           <p className="mt-3 text-white/75">Free to start. No setup fees. No commissions on what you ship.</p>

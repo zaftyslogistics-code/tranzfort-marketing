@@ -39,7 +39,7 @@ function PricingPage() {
         desc="TranZfort is — and always will be — free for individual drivers and suppliers. We make money helping fleets and enterprises run smarter, never by taking commissions on loads."
       />
 
-      <section className="py-20 bg-background">
+      <section id="plans" className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {plans.map((p) => (
             <div
@@ -85,7 +85,7 @@ function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-muted/40">
+      <section id="faq" className="py-20 bg-muted/40">
         <div className="max-w-4xl mx-auto px-5 lg:px-8">
           <div className="text-center">
             <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
@@ -112,7 +112,7 @@ function PricingPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section id="cta" className="py-20 bg-background">
         <div className="max-w-3xl mx-auto px-5 lg:px-8 text-center">
           <Sparkles className="h-8 w-8 text-orange mx-auto" />
           <h2 className="mt-3 text-3xl lg:text-4xl font-bold">Still have questions?</h2>

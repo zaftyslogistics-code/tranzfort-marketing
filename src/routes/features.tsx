@@ -61,7 +61,7 @@ function FeaturesPage() {
       </PageHero>
 
       {/* Hero features — deep dive */}
-      <section className="py-20 lg:py-28 bg-background">
+      <section id="hero-features" className="py-20 lg:py-28 bg-background">
         <div className="max-w-7xl mx-auto px-5 lg:px-8 space-y-16">
           {heroFeatures.map((f, i) => (
             <motion.div
@@ -100,7 +100,7 @@ function FeaturesPage() {
       </section>
 
       {/* Grid of all other features */}
-      <section className="py-20 lg:py-28 bg-muted/40">
+      <section id="more-features" className="py-20 lg:py-28 bg-muted/40">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">And so much more</div>
@@ -126,7 +126,7 @@ function FeaturesPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-background">
+      <section id="cta" className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-5 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold">Ready to put AI to work?</h2>
           <p className="mt-3 text-lg text-ink-soft">Join thousands of drivers and suppliers already moving smarter with TranZfort.</p>
