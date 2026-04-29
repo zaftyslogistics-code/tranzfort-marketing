@@ -68,12 +68,14 @@ jobs:
           echo "=== Files in dist/assets/ ==="
           ls -la dist/assets/ || echo "No assets directory"
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_PATH }}/
-          timeout: 300000
+      - name: Deploy to Hostinger via FTP using lftp
+        run: |
+          sudo apt-get install -y lftp
+          echo "=== Deploying via lftp ==="
+          lftp -c "
+            set ftp:ssl-allow no;
+            open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}:21;
+            cd ${{ secrets.FTP_PATH }};
+            mirror -R --delete --verbose ./dist/ .;
+            bye
+          "
