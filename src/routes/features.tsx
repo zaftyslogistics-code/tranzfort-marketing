@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   Bot,
   MapPin,
@@ -127,6 +128,73 @@ const moreFeatures = [
 function FeaturesPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <title>Features — TranZfort</title>
+        <meta
+          name="description"
+          content="TranZfort features: AI route planner, load matching, bilingual assistant, offline support, real-time tracking, document vault."
+        />
+        <link rel="canonical" href="https://tranzfort.com/features" />
+        <meta property="og:title" content="TranZfort Features" />
+        <meta
+          property="og:description"
+          content="AI route planner, load matching, bilingual assistant, offline support, real-time tracking."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "What makes TranZfort's AI route planner different?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "TranZfort's Route Genius factors in current diesel prices, time-of-day traffic on Indian highways, toll costs, and your truck's load profile to suggest routes that save you money, not just minutes.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How does the AI load matching work?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Our matching engine learns your preferred lanes, commodities, trusted suppliers, and typical rates — then surfaces the perfect 3-5 matches every time. It's return-load aware, so no empty trips.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does it really work offline?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Route planning, load search, and the chat assistant all work fully offline. Syncs when you have data. Perfect for tunnels and rural areas.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How accurate is the ETA prediction?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Our ETA is based on real driver patterns, not flat averages. It considers time of day, traffic conditions on specific highways, and historical data for your lane.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is my document data secure?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. RC, license, insurance, PUC, and permits are stored encrypted. AI watches for expiry and sends renewal reminders. Zero-tolerance fraud monitoring on every transaction.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="The AI Stack"
         title={
@@ -224,6 +292,53 @@ function FeaturesPage() {
                 <h3 className="mt-3 font-bold">{f.title}</h3>
                 <p className="text-sm text-ink-soft mt-1.5 leading-relaxed">{f.desc}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-5 lg:px-8">
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold">Features questions</h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                q: "What makes TranZfort's AI route planner different?",
+                a: "TranZfort's Route Genius factors in current diesel prices, time-of-day traffic on Indian highways, toll costs, and your truck's load profile to suggest routes that save you money, not just minutes.",
+              },
+              {
+                q: "How does the AI load matching work?",
+                a: "Our matching engine learns your preferred lanes, commodities, trusted suppliers, and typical rates — then surfaces the perfect 3-5 matches every time. It's return-load aware, so no empty trips.",
+              },
+              {
+                q: "Does it really work offline?",
+                a: "Yes. Route planning, load search, and the chat assistant all work fully offline. Syncs when you have data. Perfect for tunnels and rural areas.",
+              },
+              {
+                q: "How accurate is the ETA prediction?",
+                a: "Our ETA is based on real driver patterns, not flat averages. It considers time of day, traffic conditions on specific highways, and historical data for your lane.",
+              },
+              {
+                q: "Is my document data secure?",
+                a: "Yes. RC, license, insurance, PUC, and permits are stored encrypted. AI watches for expiry and sends renewal reminders. Zero-tolerance fraud monitoring on every transaction.",
+              },
+            ].map((x, i) => (
+              <details
+                key={i}
+                className="group p-5 rounded-2xl bg-card border border-border open:border-teal/40 transition-colors"
+              >
+                <summary className="cursor-pointer font-semibold flex items-center justify-between">
+                  {x.q}
+                  <span className="text-teal text-xl group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-ink-soft leading-relaxed">{x.a}</p>
+              </details>
             ))}
           </div>
         </div>
