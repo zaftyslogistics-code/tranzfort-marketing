@@ -22,6 +22,19 @@ function DownloadPage() {
   return (
     <SiteLayout>
       <Helmet>
+        <title>Download — TranZfort</title>
+        <meta
+          name="description"
+          content="Download TranZfort for Android and iOS. Free logistics app with AI assistant, offline support, Hindi & English voice."
+        />
+        <link rel="canonical" href="https://tranzfort.com/download" />
+        <meta property="og:title" content="Download TranZfort" />
+        <meta
+          property="og:description"
+          content="Free logistics app with AI assistant, offline support, Hindi & English voice."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -48,18 +61,65 @@ function DownloadPage() {
                   "Offline-first AI assistant",
                   "Voice commands in Hindi and English",
                   "AI-powered load matching",
-                  "Real-time route optimization",
-                  "Digital LR and POD generation",
+                  "Real-time shipment tracking",
+                  "Digital LR and POD",
+                  "Secure payments",
                 ],
-                downloadUrl: "https://tranzfort.com/download",
-                author: {
-                  "@type": "Organization",
-                  name: "TranZfort Technologies Pvt. Ltd.",
-                },
               },
-              null,
-              2,
             ),
+          }}
+        />
+        
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Is the app really free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. TranZfort is free forever for individual drivers and suppliers. No subscriptions, no commissions, no hidden charges.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are the system requirements?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Android 9.0+ with 2 GB RAM, or iOS 15+ on iPhone 8 or newer. The app is about 500 MB and works fully offline.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does it work without internet?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The AI assistant, load search, and route planning all work offline. Syncs when you have data. Perfect for tunnels and rural areas.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I install the APK directly?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. For Android phones that can't access the Play Store, you can download the APK directly from our website and install it.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is my data safe?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Your data stays on your device by default. Voice, chat, and documents are processed locally. Sync is encrypted end-to-end.",
+                  },
+                },
+              ],
+            }),
           }}
         />
       </Helmet>
@@ -154,6 +214,53 @@ function DownloadPage() {
             <div className="absolute w-48 h-48 rounded-full border-2 border-teal/30 animate-pulse-ring" />
             <PhoneFrame src={screen} alt="App preview" className="relative !w-[280px]" />
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-5 lg:px-8">
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold">Download questions</h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                q: "Is the app really free?",
+                a: "Yes. TranZfort is free forever for individual drivers and suppliers. No subscriptions, no commissions, no hidden charges.",
+              },
+              {
+                q: "What are the system requirements?",
+                a: "Android 9.0+ with 2 GB RAM, or iOS 15+ on iPhone 8 or newer. The app is about 500 MB and works fully offline.",
+              },
+              {
+                q: "Does it work without internet?",
+                a: "Yes. The AI assistant, load search, and route planning all work offline. Syncs when you have data. Perfect for tunnels and rural areas.",
+              },
+              {
+                q: "Can I install the APK directly?",
+                a: "Yes. For Android phones that can't access the Play Store, you can download the APK directly from our website and install it.",
+              },
+              {
+                q: "Is my data safe?",
+                a: "Yes. Your data stays on your device by default. Voice, chat, and documents are processed locally. Sync is encrypted end-to-end.",
+              },
+            ].map((x, i) => (
+              <details
+                key={i}
+                className="group p-5 rounded-2xl bg-card border border-border open:border-teal/40 transition-colors"
+              >
+                <summary className="cursor-pointer font-semibold flex items-center justify-between">
+                  {x.q}
+                  <span className="text-teal text-xl group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-ink-soft leading-relaxed">{x.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
