@@ -72,10 +72,22 @@ export function loadPosts(): BlogPost[] {
   return Object.entries(modules)
     .map(([path, raw]) => {
       const { data, content } = parseFrontmatter(raw as string);
+
+      // Derive author initials from author name
+      const initials = data.author
+        ? String(data.author)
+            .split(" ")
+            .map((n: string) => n[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2)
+        : "TT";
+
       return {
         ...data,
         content,
         slug: data.slug || slugify(path),
+        authorInitials: initials,
       } as BlogPost;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

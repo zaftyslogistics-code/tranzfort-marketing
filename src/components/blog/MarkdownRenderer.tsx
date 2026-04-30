@@ -2,39 +2,72 @@ import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
 
 const components: Components = {
-  h2: ({ children }) => (
-    <h2 className="text-2xl md:text-3xl font-bold mt-14 mb-5 text-ink">{children}</h2>
+  h2: ({ children, id }) => (
+    <h2
+      id={id}
+      className="scroll-mt-28 pt-10 mt-4 text-[1.85rem] md:text-[2.1rem] font-bold tracking-[-0.015em] text-ink leading-tight relative"
+    >
+      <span className="absolute -left-5 top-[0.95em] hidden lg:block h-7 w-[3px] rounded-full bg-gradient-brand" />
+      {children}
+    </h2>
   ),
-  h3: ({ children }) => (
-    <h3 className="text-xl md:text-2xl font-semibold mt-10 mb-4 text-ink">{children}</h3>
+  h3: ({ children, id }) => (
+    <h3
+      id={id}
+      className="scroll-mt-28 pt-3 mt-2 text-[1.4rem] md:text-[1.5rem] font-bold tracking-tight text-ink"
+    >
+      {children}
+    </h3>
   ),
   p: ({ children }) => (
-    <p className="text-[17px] md:text-lg leading-8 text-ink-soft mb-6">{children}</p>
+    <p className="text-[1.15rem] md:text-[1.18rem] leading-[1.85] text-ink/90 font-normal">
+      {children}
+    </p>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-teal pl-5 italic text-ink-soft bg-muted/40 py-4 rounded-r-2xl my-6">
-      {children}
+    <blockquote className="my-8 border-l-[3px] border-orange pl-6 py-1">
+      <p className="font-display text-[1.45rem] md:text-[1.6rem] leading-[1.4] text-ink italic">
+        {children}
+      </p>
     </blockquote>
   ),
   code: ({ children }) => (
     <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">{children}</code>
   ),
   pre: ({ children }) => (
-    <pre className="bg-gradient-dark text-white p-6 rounded-2xl overflow-x-auto text-sm my-8">
-      {children}
+    <pre className="my-6 rounded-xl overflow-hidden border border-ink/15">
+      <div className="flex items-center justify-between px-4 py-2 bg-ink/95 border-b border-white/10">
+        <div className="flex gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-orange/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/30" />
+          <span className="h-2.5 w-2.5 rounded-full bg-teal/80" />
+        </div>
+        <span className="text-[10px] font-mono uppercase tracking-wider text-white/50">code</span>
+      </div>
+      <div className="overflow-x-auto bg-ink text-white/90 p-5 text-sm leading-relaxed">
+        {children}
+      </div>
     </pre>
   ),
+  ul: ({ children }) => <ul className="space-y-3 pl-1 my-2">{children}</ul>,
+  li: ({ children }) => (
+    <li className="flex gap-3 text-[1.08rem] text-ink/90 leading-[1.75]">
+      <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-brand" />
+      <span>{children}</span>
+    </li>
+  ),
   img: ({ src, alt }) => (
-    <img src={src} alt={alt} className="rounded-2xl w-full my-8 border border-border shadow-soft" />
+    <figure className="my-8">
+      <div className="flex h-64 items-center justify-center rounded-xl bg-gradient-brand-soft border border-border">
+        <img src={src} alt={alt} className="rounded-xl" />
+      </div>
+      <figcaption className="mt-2 text-xs text-ink-soft text-center">{alt}</figcaption>
+    </figure>
   ),
   a: ({ href, children }) => (
     <a href={href} className="text-teal hover:underline">
       {children}
     </a>
-  ),
-  ul: ({ children }) => <ul className="list-disc pl-6 space-y-2 mb-6 text-ink-soft">{children}</ul>,
-  ol: ({ children }) => (
-    <ol className="list-decimal pl-6 space-y-2 mb-6 text-ink-soft">{children}</ol>
   ),
 };
 
@@ -44,7 +77,7 @@ interface MarkdownRendererProps {
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   return (
-    <div className="prose prose-lg max-w-none">
+    <div className="space-y-6">
       <ReactMarkdown components={components}>{content}</ReactMarkdown>
     </div>
   );

@@ -3,38 +3,37 @@ slug: offline-first-apps-feel-online
 title: "Building offline-first apps that actually feel online"
 date: 2026-03-12
 tag: Engineering
-author: TranZfort Engineering
-authorRole: Engineering Team
-excerpt: Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users.
+author: Sanjay Pillai
+authorRole: Staff Engineer
+excerpt: "Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users."
 readingTime: 9
+featured: false
+subtitle: "Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users."
+authorInitials: SP
+coverEmoji: 📡
 ---
 
-# Building offline-first apps that actually feel online
+'Offline-first' is one of those phrases that sounds simple in a pitch deck and bleeds you dry in production. Here's how we made it work for TranZfort.
 
-Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users.
+## Principle 1: the UI never knows it's offline
 
-## The philosophy
+Every action in TranZfort writes to a local SQLite queue first, then syncs. The user taps 'accept load' — they see 'accepted' instantly. Whether the server has heard about it is a background problem.
 
-Offline shouldn't mean "limited." It should mean "works anywhere, anytime." Users shouldn't have to think about connectivity.
+```typescript
+async function acceptLoad(loadId: string) {
+  await db.queue.insert({ op: "accept", loadId, ts: Date.now() });
+  ui.markAccepted(loadId);
+  syncQueue.kick(); // fire and forget
+}
+```
 
-## Core patterns we use
+## Principle 2: conflicts are inevitable, design for them
 
-### 1. Optimistic UI updates
+Two drivers accept the same load while both are offline. One wins. The other needs a graceful 'this load was taken' moment, not a stack trace. We use server-authoritative conflict resolution with optimistic UI rollback animated as a soft fade.
 
-When a user posts a load, we show it as posted immediately. If the sync fails later, we notify them and offer retry.
+> **Warning: Don't trust device clocks**
+> We've seen phones with clocks 6 months in the past. All ordering uses server-assigned monotonic IDs, not timestamps.
 
-### 2. Conflict resolution
+## Sync that survives 2G
 
-When two users edit the same data offline, we use last-write-wins with manual conflict resolution for critical fields like price.
-
-### 3. Sync queues
-
-Every action goes into a sync queue. When connectivity returns, we process the queue in order with exponential backoff.
-
-### 4. Local-first storage
-
-All data lives locally first. Cloud is a backup and sync target, not the source of truth.
-
-## The result
-
-Users can use TranZfort for days without data. When they reconnect, everything syncs seamlessly. They never know the difference.
+We compress every sync payload with brotli, batch operations into 4KB windows, and resume from the last acknowledged offset. A driver going through a tunnel doesn't reset — they pick up exactly where they left off.

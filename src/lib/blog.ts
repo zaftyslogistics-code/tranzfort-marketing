@@ -10,4 +10,9 @@ export interface BlogPost {
   coverImage?: string;
   readingTime?: number;
   content: string;
+
+  // NEW FIELDS NEEDED FOR OLD DESIGN
+  subtitle?: string;
+  authorInitials?: string;
+  coverEmoji?: string;
 }
