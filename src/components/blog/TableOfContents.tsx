@@ -43,8 +43,18 @@ export const TableOfContents = ({ headings }: TableOfContentsProps) => {
       <ul className="space-y-0.5 relative border-l border-border">
         {headings.map((h) => {
           const isActive = active === h.id;
+          const indentClass =
+            h.level === 3
+              ? "pl-3"
+              : h.level === 4
+                ? "pl-6"
+                : h.level === 5
+                  ? "pl-9"
+                  : h.level === 6
+                    ? "pl-12"
+                    : "";
           return (
-            <li key={h.id} className={h.level === 3 ? "pl-3" : ""}>
+            <li key={h.id} className={indentClass}>
               <a
                 href={`#${h.id}`}
                 className={`relative block pl-3 py-1.5 leading-snug transition-colors ${

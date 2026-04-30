@@ -3,11 +3,11 @@ import type { FC } from "react";
 
 interface BlogMetaProps {
   date: string;
-  readingTime?: number;
+  readTime?: string;
   author: string;
 }
 
-export const BlogMeta: FC<BlogMetaProps> = ({ date, readingTime, author }) => {
+export const BlogMeta: FC<BlogMetaProps> = ({ date, readTime, author }) => {
   return (
     <div className="flex flex-wrap items-center gap-4 text-sm text-ink-soft">
       <div className="flex items-center gap-1.5">
@@ -20,10 +20,10 @@ export const BlogMeta: FC<BlogMetaProps> = ({ date, readingTime, author }) => {
           })}
         </time>
       </div>
-      {readingTime && (
+      {readTime && (
         <div className="flex items-center gap-1.5">
           <Clock className="w-4 h-4" />
-          <span>{readingTime} min read</span>
+          <span>{readTime}</span>
         </div>
       )}
       <div className="flex items-center gap-1.5">

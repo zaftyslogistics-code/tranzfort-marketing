@@ -3,13 +3,14 @@ slug: rajesh-12-calls-to-1-voice-command
 title: "From 12 calls to 1 voice command: Rajesh's day, before and after"
 date: 2026-04-05
 tag: Driver Story
-author: Priya Sharma
-authorRole: Field Reporter
+author:
+  name: Priya Sharma
+  role: Field Reporter
+  initials: PS
 excerpt: "Meet Rajesh Kumar, a fleet owner from Jaipur, who replaced his broker rolodex with a single 'find loads' command."
-readingTime: 5
+readTime: 5 min read
 featured: false
 subtitle: "Meet Rajesh Kumar, a fleet owner from Jaipur, who replaced his broker rolodex with a single 'find loads' command."
-authorInitials: PS
 coverEmoji: 🚚
 ---
 

@@ -3,13 +3,14 @@ slug: hindi-voice-goes-ga
 title: "Hindi voice goes GA: lessons from 3 months of beta"
 date: 2026-03-28
 tag: Product
-author: Neha Iyer
-authorRole: Product Manager, Voice
+author:
+  name: Neha Iyer
+  role: Product Manager, Voice
+  initials: NI
 excerpt: "What we learned shipping native Hindi TTS and STT to thousands of drivers — the wins, the bugs, and the surprises."
-readingTime: 6
+readTime: 6 min read
 featured: false
 subtitle: "What we learned shipping native Hindi TTS and STT to thousands of drivers — the wins, the bugs, and the surprises."
-authorInitials: NI
 coverEmoji: 🎙️
 ---
 

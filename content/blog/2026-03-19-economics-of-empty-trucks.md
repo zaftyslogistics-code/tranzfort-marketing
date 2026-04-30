@@ -3,13 +3,14 @@ slug: economics-of-empty-trucks
 title: "The economics of empty trucks (and what AI can do about it)"
 date: 2026-03-19
 tag: Industry
-author: Vikram Joshi
-authorRole: Head of Research
+author:
+  name: Vikram Joshi
+  role: Head of Research
+  initials: VJ
 excerpt: "Empty return trips cost the Indian trucking industry an estimated ₹70,000 crore a year. Here's how matching AI is changing that."
-readingTime: 7
+readTime: 7 min read
 featured: false
 subtitle: "Empty return trips cost the Indian trucking industry an estimated ₹70,000 crore a year. Here's how matching AI is changing that."
-authorInitials: VJ
 coverEmoji: 📊
 ---
 

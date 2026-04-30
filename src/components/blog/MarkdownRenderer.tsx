@@ -1,24 +1,61 @@
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
+import { useRef, useEffect } from "react";
+import { generateHeadingId, extractTextFromChildren } from "../../lib/blog-utils";
 
 const components: Components = {
-  h2: ({ children, id }) => (
-    <h2
-      id={id}
-      className="scroll-mt-28 pt-10 mt-4 text-[1.85rem] md:text-[2.1rem] font-bold tracking-[-0.015em] text-ink leading-tight relative"
-    >
-      <span className="absolute -left-5 top-[0.95em] hidden lg:block h-7 w-[3px] rounded-full bg-gradient-brand" />
-      {children}
-    </h2>
-  ),
-  h3: ({ children, id }) => (
-    <h3
-      id={id}
-      className="scroll-mt-28 pt-3 mt-2 text-[1.4rem] md:text-[1.5rem] font-bold tracking-tight text-ink"
-    >
-      {children}
-    </h3>
-  ),
+  h2: ({ children }) => {
+    const text = extractTextFromChildren(children);
+    const id = generateHeadingId(text);
+    return (
+      <h2
+        id={id}
+        className="scroll-mt-28 pt-10 mt-4 text-[1.85rem] md:text-[2.1rem] font-bold tracking-[-0.015em] text-ink leading-tight relative"
+      >
+        <span className="absolute -left-5 top-[0.95em] hidden lg:block h-7 w-[3px] rounded-full bg-gradient-brand" />
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children }) => {
+    const text = extractTextFromChildren(children);
+    const id = generateHeadingId(text);
+    return (
+      <h3
+        id={id}
+        className="scroll-mt-28 pt-3 mt-2 text-[1.4rem] md:text-[1.5rem] font-bold tracking-tight text-ink"
+      >
+        {children}
+      </h3>
+    );
+  },
+  h4: ({ children }) => {
+    const text = extractTextFromChildren(children);
+    const id = generateHeadingId(text);
+    return (
+      <h4 id={id} className="scroll-mt-28 pt-2 mt-2 text-[1.2rem] font-bold text-ink">
+        {children}
+      </h4>
+    );
+  },
+  h5: ({ children }) => {
+    const text = extractTextFromChildren(children);
+    const id = generateHeadingId(text);
+    return (
+      <h5 id={id} className="scroll-mt-28 pt-2 mt-2 text-[1.1rem] font-bold text-ink">
+        {children}
+      </h5>
+    );
+  },
+  h6: ({ children }) => {
+    const text = extractTextFromChildren(children);
+    const id = generateHeadingId(text);
+    return (
+      <h6 id={id} className="scroll-mt-28 pt-2 mt-2 text-[1rem] font-bold text-ink">
+        {children}
+      </h6>
+    );
+  },
   p: ({ children }) => (
     <p className="text-[1.15rem] md:text-[1.18rem] leading-[1.85] text-ink/90 font-normal">
       {children}
@@ -76,8 +113,19 @@ interface MarkdownRendererProps {
 }
 
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const firstP = containerRef.current.querySelector("p:first-of-type");
+      if (firstP) {
+        firstP.classList.add("blog-drop-cap");
+      }
+    }
+  }, [content]);
+
   return (
-    <div className="space-y-6">
+    <div ref={containerRef} className="space-y-6">
       <ReactMarkdown components={components}>{content}</ReactMarkdown>
     </div>
   );

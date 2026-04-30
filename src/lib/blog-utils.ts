@@ -10,6 +10,30 @@ export const tagColor: Record<string, string> = {
   Engineering: "bg-teal/10 text-teal border-teal/20",
 };
 
+// Shared utility to generate consistent heading IDs from markdown text
+export function generateHeadingId(text: string): string {
+  if (!text) return "";
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "");
+}
+
+// Extract text from React children for ID generation
+export function extractTextFromChildren(children: React.ReactNode): string {
+  if (typeof children === "string") return children;
+  if (typeof children === "number") return String(children);
+  if (Array.isArray(children)) {
+    return children.map(extractTextFromChildren).join("");
+  }
+  if (children && typeof children === "object" && "props" in children) {
+    return extractTextFromChildren(
+      (children as { props?: { children?: React.ReactNode } }).props?.children || "",
+    );
+  }
+  return "";
+}
+
 // Get adjacent posts (prev/next) for navigation
 export function getAdjacent(slug: string) {
   const posts = loadPosts();

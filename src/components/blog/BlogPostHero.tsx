@@ -28,7 +28,7 @@ export const BlogPostHero = ({ post }: BlogPostHeroProps) => {
             {post.title}
           </h2>
           <p className="text-ink-soft mb-6 line-clamp-2 leading-relaxed">{post.excerpt}</p>
-          <BlogMeta date={post.date} readingTime={post.readingTime} author={post.author} />
+          <BlogMeta date={post.date} readTime={post.readTime} author={post.author.name} />
         </div>
       </div>
     </Link>

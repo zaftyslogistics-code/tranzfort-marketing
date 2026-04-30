@@ -90,7 +90,7 @@ function BlogPage() {
                     <span>{featuredPost.tag}</span>
                     <span>·</span>
                     <span className="flex items-center gap-1.5">
-                      <Clock className="h-3.5 w-3.5" /> {featuredPost.readingTime} min read
+                      <Clock className="h-3.5 w-3.5" /> {featuredPost.readTime}
                     </span>
                   </div>
                   <div className="mt-6 inline-flex items-center gap-2 text-orange-glow font-semibold">

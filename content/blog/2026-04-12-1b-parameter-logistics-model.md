@@ -3,13 +3,14 @@ slug: 1b-parameter-logistics-model-offline
 title: "How we shipped a 1B-parameter logistics model that runs offline"
 date: 2026-04-12
 tag: AI
-author: Aarav Mehta
-authorRole: ML Engineering Lead
+author:
+  name: Aarav Mehta
+  role: ML Engineering Lead
+  initials: AM
 excerpt: "Inside the engineering journey of getting a tuned SLM to run on entry-level Android phones — without a single cloud round-trip."
-readingTime: 8
+readTime: 8 min read
 featured: true
 subtitle: "Inside the engineering journey of getting a tuned SLM to run on entry-level Android phones — without a single cloud round-trip."
-authorInitials: AM
 coverEmoji: 🤖
 ---
 

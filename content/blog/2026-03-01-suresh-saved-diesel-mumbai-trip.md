@@ -3,13 +3,14 @@ slug: suresh-saved-diesel-mumbai
 title: "Suresh saved ₹2,000 in diesel on one Mumbai trip. Here's how."
 date: 2026-03-01
 tag: Driver Story
-author: Priya Sharma
-authorRole: Field Reporter
+author:
+  name: Priya Sharma
+  role: Field Reporter
+  initials: PS
 excerpt: "Route AI doesn't just shave minutes — it picks the cheapest path. Real numbers from a 3-day haul."
-readingTime: 4
+readTime: 4 min read
 featured: false
 subtitle: "Route AI doesn't just shave minutes — it picks the cheapest path. Real numbers from a 3-day haul."
-authorInitials: PS
 coverEmoji: ⛽
 ---
 

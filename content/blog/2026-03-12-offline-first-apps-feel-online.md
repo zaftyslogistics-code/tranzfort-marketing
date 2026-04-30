@@ -3,13 +3,14 @@ slug: offline-first-apps-feel-online
 title: "Building offline-first apps that actually feel online"
 date: 2026-03-12
 tag: Engineering
-author: Sanjay Pillai
-authorRole: Staff Engineer
+author:
+  name: Sanjay Pillai
+  role: Staff Engineer
+  initials: SP
 excerpt: "Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users."
-readingTime: 9
+readTime: 9 min read
 featured: false
 subtitle: "Our playbook for sync, conflict resolution, and UX patterns that make 'offline' feel invisible to users."
-authorInitials: SP
 coverEmoji: 📡
 ---
 

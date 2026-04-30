@@ -30,7 +30,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
           {post.title}
         </h3>
         <p className="text-ink-soft text-sm mb-4 line-clamp-2 leading-relaxed">{post.excerpt}</p>
-        <BlogMeta date={post.date} readingTime={post.readingTime} author={post.author} />
+        <BlogMeta date={post.date} readTime={post.readTime} author={post.author.name} />
       </div>
     </Link>
   );

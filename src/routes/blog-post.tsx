@@ -7,7 +7,7 @@ import { ShareButtons } from "../components/blog/ShareButtons";
 import { TableOfContents, type Heading } from "../components/blog/TableOfContents";
 import { SiteLayout } from "@/components/site/Layout";
 import { getPostBySlug, loadPosts } from "../lib/blog-loader";
-import { getAdjacent, getRelated, tagColor } from "../lib/blog-utils";
+import { getAdjacent, getRelated, tagColor, generateHeadingId } from "../lib/blog-utils";
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -20,17 +20,15 @@ export default function BlogPostPage() {
   const { prev, next } = getAdjacent(slug || "");
   const related = getRelated(slug || "", 3);
 
-  // Extract headings for TOC
+  // Extract headings for TOC (supports h2-h6, handles leading whitespace)
   const headings: Heading[] = post.content
     .split("\n")
-    .filter((line) => line.match(/^#{2,3}\s/))
+    .filter((line) => line.trim().match(/^#{2,6}\s+/))
     .map((line) => {
-      const level = line.match(/^(#{2,3})/)?.[1].length || 2;
-      const text = line.replace(/^#{2,3}\s/, "").trim();
-      const id = text
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^\w-]/g, "");
+      const trimmedLine = line.trim();
+      const level = trimmedLine.match(/^(#{2,6})/)?.[1].length || 2;
+      const text = trimmedLine.replace(/^#{2,6}\s+/, "").trim();
+      const id = generateHeadingId(text);
       return { id, text, level };
     });
 
@@ -72,7 +70,7 @@ export default function BlogPostPage() {
             </span>
             <span className="text-white/30">·</span>
             <span className="flex items-center gap-1.5">
-              <Clock className="h-3 w-3" /> {post.readingTime} min read
+              <Clock className="h-3 w-3" /> {post.readTime}
             </span>
           </div>
 
@@ -88,11 +86,13 @@ export default function BlogPostPage() {
           <div className="mt-8 flex items-center justify-between gap-4 pt-6 border-t border-white/10">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-gradient-brand grid place-items-center text-white text-sm font-bold shadow-brand">
-                {post.authorInitials || "TT"}
+                {post.author.initials}
               </div>
               <div>
-                <div className="font-semibold text-sm text-white leading-tight">{post.author}</div>
-                <div className="text-xs text-white/60">{post.authorRole || "TranZfort Team"}</div>
+                <div className="font-semibold text-sm text-white leading-tight">
+                  {post.author.name}
+                </div>
+                <div className="text-xs text-white/60">{post.author.role}</div>
               </div>
             </div>
             <div className="hidden sm:block">
@@ -105,7 +105,7 @@ export default function BlogPostPage() {
       {/* Body */}
       <section className="bg-background relative">
         {/* Floating TOC */}
-        <aside className="hidden xl:block absolute top-12 right-[max(2rem, calc(50%-560px))] w-[200px]">
+        <aside className="hidden xl:block absolute top-12 left-[calc(50%+380px)] w-[200px]">
           <div className="sticky top-24">
             <TableOfContents headings={headings} />
           </div>
@@ -129,16 +129,16 @@ export default function BlogPostPage() {
             {/* Author card */}
             <div className="flex items-start gap-4 p-6 rounded-2xl bg-muted/40 border border-border">
               <div className="h-12 w-12 rounded-full bg-gradient-brand grid place-items-center text-white font-bold shrink-0 shadow-brand">
-                {post.authorInitials || "TT"}
+                {post.author.initials}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-ink-soft">
                   Written by
                 </div>
                 <div className="font-display font-bold text-base text-ink mt-0.5">
-                  {post.author}
+                  {post.author.name}
                 </div>
-                <div className="text-xs text-ink-soft">{post.authorRole || "TranZfort Team"}</div>
+                <div className="text-xs text-ink-soft">{post.author.role}</div>
                 <p className="mt-2 text-sm text-ink/80 leading-relaxed">
                   Writing about AI, logistics, and the road from the TranZfort team.{" "}
                   <Link to="/contact" className="text-teal font-semibold hover:underline">
@@ -180,7 +180,7 @@ export default function BlogPostPage() {
                     {prev.title}
                   </div>
                   <div className="mt-1 text-xs text-white/50">
-                    {prev.tag} · {prev.readingTime} min read
+                    {prev.tag} · {prev.readTime}
                   </div>
                 </Link>
               ) : (
@@ -198,7 +198,7 @@ export default function BlogPostPage() {
                     {next.title}
                   </div>
                   <div className="mt-1 text-xs text-white/50">
-                    {next.tag} · {next.readingTime} min read
+                    {next.tag} · {next.readTime}
                   </div>
                 </Link>
               ) : (
@@ -245,7 +245,7 @@ export default function BlogPostPage() {
                       >
                         {p.tag}
                       </span>
-                      <span className="text-xs text-ink-soft">{p.readingTime} min read</span>
+                      <span className="text-xs text-ink-soft">{p.readTime}</span>
                     </div>
                     <h3 className="mt-4 font-display font-bold text-[1.05rem] leading-snug group-hover:text-teal transition-colors">
                       {p.title}

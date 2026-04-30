@@ -8,7 +8,7 @@ const modules = import.meta.glob("/content/blog/*.md", {
 });
 
 function parseFrontmatter(content: string): {
-  data: Record<string, string | number | boolean>;
+  data: Record<string, string | number | boolean | unknown>;
   content: string;
 } {
   const lines = content.split("\n");
@@ -29,38 +29,87 @@ function parseFrontmatter(content: string): {
   }
 
   const frontmatterLines = lines.slice(1, frontmatterEnd);
-  const bodyLines = lines.slice(frontmatterEnd + 1);
-  const body = bodyLines.join("\n").trim();
+  const data: Record<string, unknown> = {};
+  let currentKey = "";
+  let inNested = false;
 
-  const data: Record<string, string | number | boolean> = {};
-  for (const line of frontmatterLines) {
-    const colonIndex = line.indexOf(":");
-    if (colonIndex === -1) continue;
+  frontmatterLines.forEach((line, idx) => {
+    const trimmed = line.trim();
 
-    const key = line.slice(0, colonIndex).trim();
-    let value: string | number | boolean = line.slice(colonIndex + 1).trim();
+    // Skip empty lines
+    if (!trimmed) return;
 
-    // Handle quoted values
-    if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
-    ) {
-      value = value.slice(1, -1);
+    // Check if this is a nested property (indented)
+    if (trimmed.startsWith("  ")) {
+      if (currentKey && inNested) {
+        const nestedColon = trimmed.indexOf(":");
+        if (nestedColon > -1) {
+          const nestedKey = trimmed.slice(0, nestedColon).trim();
+          const nestedValue = trimmed.slice(nestedColon + 1).trim();
+          const currentObj = data[currentKey] as Record<string, string>;
+          if (!currentObj) {
+            (data[currentKey] as Record<string, string>) = {};
+          }
+          (data[currentKey] as Record<string, string>)[nestedKey] = nestedValue;
+        }
+      }
+      return;
     }
 
-    // Handle boolean values
-    if (value === "true") value = true;
-    if (value === "false") value = false;
+    // Reset nested state for new top-level keys
+    inNested = false;
 
-    // Handle number values
+    const colonIndex = trimmed.indexOf(":");
+    if (colonIndex === -1) return;
+
+    const key = trimmed.slice(0, colonIndex).trim();
+    const value = trimmed.slice(colonIndex + 1).trim();
+
+    // Handle nested objects (author)
+    if (key === "author" && value === "") {
+      currentKey = key;
+      inNested = true;
+      data[key] = {};
+      return;
+    }
+
+    currentKey = key;
+
+    // Handle booleans
+    if (value === "true") {
+      data[key] = true;
+      return;
+    }
+    if (value === "false") {
+      data[key] = false;
+      return;
+    }
+
+    // Handle numbers
     if (!isNaN(Number(value)) && value !== "") {
-      value = Number(value);
+      data[key] = Number(value);
+      return;
+    }
+
+    // Handle arrays
+    if (value.startsWith("[") && value.endsWith("]")) {
+      try {
+        data[key] = JSON.parse(value);
+        return;
+      } catch {
+        // Fall through
+      }
     }
 
     data[key] = value;
-  }
+  });
 
-  return { data, content: body };
+  const contentBody = lines
+    .slice(frontmatterEnd + 1)
+    .join("\n")
+    .trim();
+
+  return { data, content: contentBody };
 }
 
 function slugify(path: string): string {
@@ -73,21 +122,31 @@ export function loadPosts(): BlogPost[] {
     .map(([path, raw]) => {
       const { data, content } = parseFrontmatter(raw as string);
 
-      // Derive author initials from author name
-      const initials = data.author
-        ? String(data.author)
-            .split(" ")
-            .map((n: string) => n[0])
-            .join("")
-            .toUpperCase()
-            .slice(0, 2)
-        : "TT";
+      // If author is already an object (from nested YAML), use it
+      // Otherwise, create it from flat author field
+      let authorObj = data.author;
+      if (!authorObj || typeof authorObj !== "object") {
+        const initials = data.author
+          ? String(data.author)
+              .split(" ")
+              .map((n: string) => n[0])
+              .join("")
+              .toUpperCase()
+              .slice(0, 2)
+          : "TT";
+
+        authorObj = {
+          name: data.author || "TranZfort Team",
+          role: data.authorRole || "TranZfort Team",
+          initials: initials,
+        };
+      }
 
       return {
         ...data,
         content,
         slug: data.slug || slugify(path),
-        authorInitials: initials,
+        author: authorObj,
       } as BlogPost;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
