@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowRight,
   MapPin,
@@ -18,6 +19,73 @@ import screen from "@/assets/screen-route.jpg";
 function TruckersPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <title>For Truckers — TranZfort</title>
+        <meta
+          name="description"
+          content="TranZfort for truckers: AI co-driver, Hindi & English voice, offline support, return load finder, route optimization. Free forever."
+        />
+        <link rel="canonical" href="https://tranzfort.com/for-truckers" />
+        <meta property="og:title" content="TranZfort for Truckers" />
+        <meta
+          property="og:description"
+          content="AI co-driver, Hindi & English voice, offline support, return load finder. Free forever."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Is the driver app really free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The TranZfort Driver App is free forever. No hidden charges, no commissions on loads. We make our money helping fleets and enterprises.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does it work without internet?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The AI assistant works fully offline. Voice commands, load search, and route planning all work without data. Syncs when you have signal.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What languages does it support?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Hindi and English natively, including Hinglish. Just speak naturally — you can switch languages mid-sentence.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How does it help find return loads?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The AI analyzes your current location, destination, and preferences to find return loads nearby. It considers load type, weight, and your route.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Will it drain my battery?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. The AI only activates when you invoke it and uses about 400 MB of RAM. Compatible with Android 9+ and iOS 15+.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="For Truckers"
         title={
@@ -144,6 +212,53 @@ function TruckersPage() {
                 <div className="mt-4 font-bold text-lg">{x.t}</div>
                 <p className="text-ink-soft text-sm mt-2">{x.d}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-5 lg:px-8">
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold">Questions for truckers</h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                q: "Is the driver app really free?",
+                a: "Yes. The TranZfort Driver App is free forever. No hidden charges, no commissions on loads. We make our money helping fleets and enterprises.",
+              },
+              {
+                q: "Does it work without internet?",
+                a: "Yes. The AI assistant works fully offline. Voice commands, load search, and route planning all work without data. Syncs when you have signal.",
+              },
+              {
+                q: "What languages does it support?",
+                a: "Hindi and English natively, including Hinglish. Just speak naturally — you can switch languages mid-sentence.",
+              },
+              {
+                q: "How does it help find return loads?",
+                a: "The AI analyzes your current location, destination, and preferences to find return loads nearby. It considers load type, weight, and your route.",
+              },
+              {
+                q: "Will it drain my battery?",
+                a: "No. The AI only activates when you invoke it and uses about 400 MB of RAM. Compatible with Android 9+ and iOS 15+.",
+              },
+            ].map((x, i) => (
+              <details
+                key={i}
+                className="group p-5 rounded-2xl bg-card border border-border open:border-teal/40 transition-colors"
+              >
+                <summary className="cursor-pointer font-semibold flex items-center justify-between">
+                  {x.q}
+                  <span className="text-teal text-xl group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-ink-soft leading-relaxed">{x.a}</p>
+              </details>
             ))}
           </div>
         </div>
