@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Bot, Mic, WifiOff, Languages, Cpu, Lock, ArrowRight, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
@@ -61,6 +62,73 @@ const examples = [
 function AIPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <title>AI Assistant — TranZfort</title>
+        <meta
+          name="description"
+          content="TranZfort's local AI assistant runs offline on your phone. Hindi & English voice, instant responses, zero data sent to servers."
+        />
+        <link rel="canonical" href="https://tranzfort.com/ai-assistant" />
+        <meta property="og:title" content="TranZfort AI Assistant" />
+        <meta
+          property="og:description"
+          content="Local AI that runs offline on your phone. Hindi & English voice, instant responses."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Does it really run offline?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. We ship a quantised, domain-tuned small-language-model (~1B parameters) along with TTS and STT engines that run on your phone's CPU/NPU. No internet needed for chat, voice or scanning.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What languages does it understand?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Hindi and Indian English natively, including Hinglish code-switching mid-sentence. Regional language support (Marathi, Tamil, Telugu, Punjabi) is rolling out in 2026.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Where does my data go?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "By default — nowhere. Voice, chat and scanned documents stay on your device. You can opt-in to sync conversations to your TranZfort account, end-to-end encrypted.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Will it slow down my phone?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. The model loads only when you invoke it and uses about 400 MB of RAM. Compatible with any phone running Android 9+ or iOS 15+.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can my fleet build custom workflows?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Enterprise plans include custom intents, integrations with your TMS, and access to our model fine-tuning sandbox.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="AI Assistant"
         title={
