@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { Smartphone, Apple, Play, QrCode, ArrowRight, Check, WifiOff, Mic, Languages, ShieldCheck } from "lucide-react";
+import {
+  Smartphone,
+  Apple,
+  Play,
+  QrCode,
+  ArrowRight,
+  Check,
+  WifiOff,
+  Mic,
+  Languages,
+  ShieldCheck,
+} from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
 import { PhoneFrame } from "@/components/site/PhoneFrame";
@@ -14,42 +25,51 @@ function DownloadPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "TranZfort",
-              "operatingSystem": "Android, iOS",
-              "applicationCategory": "BusinessApplication",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "INR"
+            __html: JSON.stringify(
+              {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                name: "TranZfort",
+                operatingSystem: "Android, iOS",
+                applicationCategory: "BusinessApplication",
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "INR",
+                },
+                description:
+                  "India's first offline-first, AI-powered logistics network for truckers and suppliers.",
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "4.8",
+                  ratingCount: "12500",
+                },
+                featureList: [
+                  "Offline-first AI assistant",
+                  "Voice commands in Hindi and English",
+                  "AI-powered load matching",
+                  "Real-time route optimization",
+                  "Digital LR and POD generation",
+                ],
+                downloadUrl: "https://tranzfort.com/download",
+                author: {
+                  "@type": "Organization",
+                  name: "TranZfort Technologies Pvt. Ltd.",
+                },
               },
-              "description": "India's first offline-first, AI-powered logistics network for truckers and suppliers.",
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "12500"
-              },
-              "featureList": [
-                "Offline-first AI assistant",
-                "Voice commands in Hindi and English",
-                "AI-powered load matching",
-                "Real-time route optimization",
-                "Digital LR and POD generation"
-              ],
-              "downloadUrl": "https://tranzfort.com/download",
-              "author": {
-                "@type": "Organization",
-                "name": "TranZfort Technologies Pvt. Ltd."
-              }
-            }, null, 2)
+              null,
+              2,
+            ),
           }}
         />
       </Helmet>
       <PageHero
         eyebrow="Download"
-        title={<>Get TranZfort. <span className="text-gradient-brand">Free, forever.</span></>}
+        title={
+          <>
+            Get TranZfort. <span className="text-gradient-brand">Free, forever.</span>
+          </>
+        }
         desc="Available on Android and iOS. Works offline from the first launch. Built for entry-level smartphones — runs smoothly on any device from 2018 onwards."
       />
 
@@ -57,11 +77,15 @@ function DownloadPage() {
         <div className="max-w-6xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
           {/* Download options */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <a href="#" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 hover:shadow-brand transition-all">
+            <a
+              href="#"
+              className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 hover:shadow-brand transition-all"
+            >
               <Apple className="h-9 w-9" />
               <div className="text-left flex-1">
                 <div className="text-xs text-ink-soft">Download on the</div>
@@ -69,7 +93,10 @@ function DownloadPage() {
               </div>
               <ArrowRight className="h-5 w-5 text-ink-soft" />
             </a>
-            <a href="#" className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 hover:shadow-brand transition-all">
+            <a
+              href="#"
+              className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 hover:shadow-brand transition-all"
+            >
               <Play className="h-9 w-9 fill-current" />
               <div className="text-left flex-1">
                 <div className="text-xs text-ink-soft">Get it on</div>
@@ -77,7 +104,11 @@ function DownloadPage() {
               </div>
               <ArrowRight className="h-5 w-5 text-ink-soft" />
             </a>
-            <a href="/app-release.apk" download className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 transition-all">
+            <a
+              href="/app-release.apk"
+              download
+              className="w-full flex items-center gap-4 p-5 rounded-2xl bg-card border border-border hover:border-teal/50 transition-all"
+            >
               <Smartphone className="h-9 w-9" />
               <div className="text-left flex-1">
                 <div className="text-xs text-ink-soft">For older Android — direct</div>
@@ -92,7 +123,9 @@ function DownloadPage() {
               </div>
               <div>
                 <div className="font-bold">Scan to install</div>
-                <div className="text-sm text-ink-soft">Open your camera. Point at the QR. Get the app in seconds.</div>
+                <div className="text-sm text-ink-soft">
+                  Open your camera. Point at the QR. Get the app in seconds.
+                </div>
               </div>
             </div>
 
@@ -112,7 +145,8 @@ function DownloadPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative h-[600px] flex items-center justify-center"
           >
@@ -128,7 +162,9 @@ function DownloadPage() {
         <div className="max-w-5xl mx-auto px-5 lg:px-8">
           <div className="text-center max-w-xl mx-auto">
             <h2 className="text-3xl font-bold">System requirements</h2>
-            <p className="mt-3 text-ink-soft">Designed to run on the phones drivers actually use.</p>
+            <p className="mt-3 text-ink-soft">
+              Designed to run on the phones drivers actually use.
+            </p>
           </div>
           <div className="mt-10 grid md:grid-cols-3 gap-5">
             {[
@@ -143,7 +179,9 @@ function DownloadPage() {
             ))}
           </div>
           <div className="mt-12 text-center">
-            <Link to="/help" className="text-teal font-semibold hover:underline">Need help installing? Visit our Help Center →</Link>
+            <Link to="/help" className="text-teal font-semibold hover:underline">
+              Need help installing? Visit our Help Center →
+            </Link>
           </div>
         </div>
       </section>

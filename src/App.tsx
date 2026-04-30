@@ -14,6 +14,7 @@ const ForSuppliersPage = lazy(() => import("./routes/for-suppliers"));
 const HowItWorksPage = lazy(() => import("./routes/how-it-works"));
 const HelpPage = lazy(() => import("./routes/help"));
 const BlogPage = lazy(() => import("./routes/blog"));
+const BlogPostPage = lazy(() => import("./routes/blog-post"));
 const AiAssistantPage = lazy(() => import("./routes/ai-assistant"));
 const FeaturesPage = lazy(() => import("./routes/features"));
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorksPage />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/ai-assistant" element={<AiAssistantPage />} />
         <Route path="/features" element={<FeaturesPage />} />
       </Routes>

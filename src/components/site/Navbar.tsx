@@ -23,7 +23,9 @@ export function Navbar() {
             <NavLink
               key={l.to}
               to={l.to}
-              className={({ isActive }) => `px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink rounded-lg transition-colors ${isActive ? "bg-accent text-ink" : ""}`}
+              className={({ isActive }) =>
+                `px-4 py-2 text-sm font-medium text-ink-soft hover:text-ink rounded-lg transition-colors ${isActive ? "bg-accent text-ink" : ""}`
+              }
             >
               {l.label}
             </NavLink>

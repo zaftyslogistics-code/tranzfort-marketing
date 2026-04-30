@@ -9,7 +9,11 @@ function LegalPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Legal"
-        title={<>Legal information and <span className="text-gradient-brand">policies</span>.</>}
+        title={
+          <>
+            Legal information and <span className="text-gradient-brand">policies</span>.
+          </>
+        }
         desc="The legal stuff, in plain English. We believe your trust is earned through clear, honest policies — not buried fine print."
       />
 
@@ -30,7 +34,8 @@ function LegalPage() {
               <div className="flex-1">
                 <h2 className="text-xl font-bold">Privacy Policy</h2>
                 <p className="mt-1 text-ink-soft text-sm leading-relaxed">
-                  How we collect, use, and protect your data. Covers data types, sharing, security, retention, and your rights.
+                  How we collect, use, and protect your data. Covers data types, sharing, security,
+                  retention, and your rights.
                 </p>
               </div>
               <ArrowRight className="h-5 w-5 text-ink-soft group-hover:text-teal transition-colors" />
@@ -53,7 +58,8 @@ function LegalPage() {
               <div className="flex-1">
                 <h2 className="text-xl font-bold">Terms of Service</h2>
                 <p className="mt-1 text-ink-soft text-sm leading-relaxed">
-                  The rules that keep our marketplace fair and safe. Covers accounts, responsibilities, prohibited activities, liability, and disputes.
+                  The rules that keep our marketplace fair and safe. Covers accounts,
+                  responsibilities, prohibited activities, liability, and disputes.
                 </p>
               </div>
               <ArrowRight className="h-5 w-5 text-ink-soft group-hover:text-teal transition-colors" />
@@ -78,11 +84,13 @@ function LegalPage() {
               </div>
               <div className="mt-5 space-y-4 text-ink-soft leading-relaxed [&_strong]:text-ink">
                 <p>
-                  Our website uses essential cookies to keep you signed in and remember your preferences.
-                  We use lightweight, privacy-respecting analytics (no third-party ad trackers) to understand which pages help our users.
+                  Our website uses essential cookies to keep you signed in and remember your
+                  preferences. We use lightweight, privacy-respecting analytics (no third-party ad
+                  trackers) to understand which pages help our users.
                 </p>
                 <p>
-                  The mobile app uses local storage and an on-device database to enable offline mode. No third-party SDKs run in the background.
+                  The mobile app uses local storage and an on-device database to enable offline
+                  mode. No third-party SDKs run in the background.
                 </p>
               </div>
             </div>
@@ -109,7 +117,8 @@ function LegalPage() {
                   <strong>legal@tranzfort.com</strong>.
                 </p>
                 <p>
-                  Mailing address: TranZfort Logistics Technologies Pvt. Ltd., Mumbai, Maharashtra, India.
+                  Mailing address: TranZfort Logistics Technologies Pvt. Ltd., Mumbai, Maharashtra,
+                  India.
                 </p>
               </div>
             </div>

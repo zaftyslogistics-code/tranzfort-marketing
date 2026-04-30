@@ -1,4 +1,9 @@
-type Props = { src: string; alt: string; className?: string; fetchPriority?: "high" | "low" | "auto" };
+type Props = {
+  src: string;
+  alt: string;
+  className?: string;
+  fetchPriority?: "high" | "low" | "auto";
+};
 export function PhoneFrame({ src, alt, className = "", fetchPriority = "auto" }: Props) {
   return (
     <div className={`relative mx-auto w-[260px] aspect-[9/19] ${className}`}>

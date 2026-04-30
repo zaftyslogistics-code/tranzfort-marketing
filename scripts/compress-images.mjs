@@ -39,24 +39,28 @@ async function compressImage(inputPath) {
     } else if (metadata.format === "webp") {
       compressed = image.webp({ quality: WEBP_QUALITY });
     } else {
-      console.log(`⏭️  Skipping ${inputPath.split("\\").pop()} (unsupported format: ${metadata.format})`);
+      console.log(
+        `⏭️  Skipping ${inputPath.split("\\").pop()} (unsupported format: ${metadata.format})`,
+      );
       return;
     }
 
     // Write to temp file first
     const tempPath = join(tmpdir(), `temp-${Date.now()}-${inputPath.split("\\").pop()}`);
     await compressed.toFile(tempPath);
-    
+
     const newStats = await stat(tempPath);
     const newSize = newStats.size;
-    const savings = ((originalSize - newSize) / originalSize * 100).toFixed(1);
+    const savings = (((originalSize - newSize) / originalSize) * 100).toFixed(1);
 
     // Replace original file
     await unlink(inputPath);
     await rename(tempPath, inputPath);
 
     console.log(`✅ ${inputPath.split("\\").pop()}`);
-    console.log(`   ${formatBytes(originalSize)} → ${formatBytes(newSize)} (${savings}% reduction)`);
+    console.log(
+      `   ${formatBytes(originalSize)} → ${formatBytes(newSize)} (${savings}% reduction)`,
+    );
   } catch (error) {
     console.error(`❌ Error compressing ${inputPath}:`, error.message);
   }
@@ -87,18 +91,18 @@ async function getImages(dir) {
 async function generateFavicons() {
   try {
     console.log("Generating favicon sizes from logo:");
-    
+
     for (const size of FAVICON_SIZES) {
       const outputPath = join(PUBLIC_DIR, `favicon-${size}x${size}.png`);
       await sharp(LOGO_PATH)
         .resize(size, size, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
         .png({ quality: PNG_QUALITY })
         .toFile(outputPath);
-      
+
       const stats = await stat(outputPath);
       console.log(`✅ favicon-${size}x${size}.png (${formatBytes(stats.size)})`);
     }
-    
+
     // Also copy the compressed logo to public for use as favicon
     await sharp(LOGO_PATH).png({ quality: PNG_QUALITY }).toFile(join(PUBLIC_DIR, "logo.png"));
     console.log(`✅ logo.png copied to public folder`);
@@ -114,7 +118,7 @@ async function main() {
   // Compress images in src/assets
   console.log("Compressing src/assets images:");
   const assetImages = await getImages(ASSETS_DIR);
-  
+
   if (assetImages.length === 0) {
     console.log("No images found in src/assets");
   } else {
@@ -133,7 +137,7 @@ async function main() {
   // Compress images in public
   console.log("Compressing public images:");
   const publicImages = await getImages(PUBLIC_DIR);
-  
+
   if (publicImages.length === 0) {
     console.log("No images found in public");
   } else {
