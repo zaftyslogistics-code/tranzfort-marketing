@@ -79,40 +79,77 @@ function PricingPage() {
   return (
     <SiteLayout>
       <Helmet>
+        <title>Pricing — TranZfort</title>
+        <meta
+          name="description"
+          content="Transparent pricing for Indian logistics. Free forever for drivers & suppliers. Fleet Pro for growing businesses. Enterprise for large operations."
+        />
+        <link rel="canonical" href="https://tranzfort.com/pricing" />
+        <meta property="og:title" content="TranZfort Pricing" />
+        <meta
+          property="og:description"
+          content="Free forever for drivers & suppliers. Fleet Pro for growing businesses. Enterprise for large operations."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              {
-                "@context": "https://schema.org",
-                "@type": "Product",
-                name: "TranZfort Fleet Pro",
-                description:
-                  "For small to mid-sized fleets that want dispatcher dashboards and analytics.",
-                brand: {
-                  "@type": "Brand",
-                  name: "TranZfort",
-                },
-                offers: {
-                  "@type": "Offer",
-                  price: "999",
-                  priceCurrency: "INR",
-                  availability: "https://schema.org/InStock",
-                  url: "https://tranzfort.com/pricing",
-                  seller: {
-                    "@type": "Organization",
-                    name: "TranZfort Technologies Pvt. Ltd.",
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Is the Driver plan really free forever?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Our promise: TranZfort will always be free for individual drivers and suppliers using the core platform. We make our money on Fleet Pro and Enterprise plans.",
                   },
                 },
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "4.8",
-                  reviewCount: "8500",
+                {
+                  "@type": "Question",
+                  name: "Do you take any commission on loads?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. Zero commissions, zero hidden charges. The price the supplier posts is the price the trucker gets.",
+                  },
                 },
-              },
-              null,
-              2,
-            ),
+                {
+                  "@type": "Question",
+                  name: "What's included in the 14-day Fleet Pro trial?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Full access to the Pro dashboard for up to 5 trucks. No credit card required. After 14 days you choose whether to upgrade or stay on the free plan.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I switch plans later?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Anytime. Upgrade, downgrade or cancel from your account settings. Pro-rated refunds on annual plans.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is GST included in the prices?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No, prices shown are exclusive of 18% GST. GST invoices are auto-generated for all paid plans.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What's the Enterprise pricing?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "It depends on fleet size, integrations, and AI customisation. Talk to our sales team — most enterprise deployments start at ₹2-5 lakh per year.",
+                  },
+                }
+              ]
+            }),
           }}
         />
       </Helmet>
