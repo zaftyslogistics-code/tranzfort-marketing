@@ -34,6 +34,7 @@ export default function BlogPostPage() {
 
   return (
     <SiteLayout>
+      <BlogSEO post={post} />
       <ReadingProgress />
 
       {/* Dark editorial header */}

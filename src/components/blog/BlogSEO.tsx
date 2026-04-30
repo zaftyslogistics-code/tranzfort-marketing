@@ -58,7 +58,11 @@ export const BlogSEO = ({ post }: BlogSEOProps) => {
             description: post.excerpt,
             image: post.coverImage ? `https://tranzfort.com${post.coverImage}` : undefined,
             datePublished: post.date,
-            author: { "@type": "Organization", name: post.author },
+            author: {
+              "@type": "Person",
+              name: typeof post.author === "string" ? post.author : post.author.name,
+              jobTitle: typeof post.author === "string" ? undefined : post.author.role,
+            },
             publisher: {
               "@type": "Organization",
               name: "TranZfort Technologies Pvt. Ltd.",
