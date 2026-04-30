@@ -96,7 +96,7 @@ const components: Components = {
   img: ({ src, alt }) => (
     <figure className="my-8">
       <div className="flex h-64 items-center justify-center rounded-xl bg-gradient-brand-soft border border-border">
-        <img src={src} alt={alt} className="rounded-xl" />
+        <img loading="lazy" src={src} alt={alt} className="rounded-xl" />
       </div>
       <figcaption className="mt-2 text-xs text-ink-soft text-center">{alt}</figcaption>
     </figure>

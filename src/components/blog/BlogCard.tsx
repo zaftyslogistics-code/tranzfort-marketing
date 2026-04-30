@@ -15,7 +15,7 @@ export const BlogCard = ({ post }: BlogCardProps) => {
     >
       {post.coverImage && (
         <div className="aspect-video w-full overflow-hidden rounded-t-2xl">
-          <img
+          <img loading="lazy"
             src={post.coverImage}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"

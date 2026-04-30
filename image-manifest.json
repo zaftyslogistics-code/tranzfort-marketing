@@ -1,0 +1,70 @@
+{
+  "screen-chat.jpg": {
+    "original": "screen-chat.jpg",
+    "webp": "screen-chat.webp",
+    "type": "phone-screen"
+  },
+  "screen-route.jpg": {
+    "original": "screen-route.jpg",
+    "webp": "screen-route.webp",
+    "type": "phone-screen"
+  },
+  "screen-scanner.jpg": {
+    "original": "screen-scanner.jpg",
+    "webp": "screen-scanner.webp",
+    "type": "phone-screen"
+  },
+  "screen-supplier.jpg": {
+    "original": "screen-supplier.jpg",
+    "webp": "screen-supplier.webp",
+    "type": "phone-screen"
+  },
+  "logo.png": {
+    "original": "logo.png",
+    "webp": "logo.webp",
+    "variants": [
+      {
+        "width": 375,
+        "path": "logo-375.webp"
+      },
+      {
+        "width": 768,
+        "path": "logo-768.webp"
+      },
+      {
+        "width": 1200,
+        "path": "logo-1200.webp"
+      },
+      {
+        "width": 1536,
+        "path": "logo-1536.webp"
+      }
+    ],
+    "type": "responsive",
+    "srcset": "logo-375.webp 375w, logo-768.webp 768w, logo-1200.webp 1200w, logo-1536.webp 1536w"
+  },
+  "footer.png": {
+    "original": "footer.png",
+    "webp": "footer.webp",
+    "variants": [
+      {
+        "width": 375,
+        "path": "footer-375.webp"
+      },
+      {
+        "width": 768,
+        "path": "footer-768.webp"
+      },
+      {
+        "width": 1200,
+        "path": "footer-1200.webp"
+      },
+      {
+        "width": 1536,
+        "path": "footer-1536.webp"
+      }
+    ],
+    "type": "responsive",
+    "srcset": "footer-375.webp 375w, footer-768.webp 768w, footer-1200.webp 1200w, footer-1536.webp 1536w"
+  }
+}

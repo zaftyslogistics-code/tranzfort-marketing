@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-2.5 group">
-      <img
+      <img loading="lazy"
         src={logo}
         alt="TranZfort logo"
         width={40}

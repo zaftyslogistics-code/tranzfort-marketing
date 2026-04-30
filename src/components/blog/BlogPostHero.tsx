@@ -13,7 +13,7 @@ export const BlogPostHero = ({ post }: BlogPostHeroProps) => {
       <div className="grid lg:grid-cols-2 gap-8 items-center bg-card rounded-2xl border border-border/60 overflow-hidden hover:shadow-lg transition-all duration-300">
         {post.coverImage && (
           <div className="aspect-video lg:aspect-auto lg:h-full overflow-hidden">
-            <img
+            <img loading="lazy"
               src={post.coverImage}
               alt={post.title}
               className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
