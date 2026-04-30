@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { UserPlus, Bot, Truck, Star, ArrowRight, Sparkles } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import { PageHero } from "@/components/site/PageHero";
@@ -53,6 +54,73 @@ const steps = [
 function HowItWorks() {
   return (
     <SiteLayout>
+      <Helmet>
+        <title>How It Works — TranZfort</title>
+        <meta
+          name="description"
+          content="How TranZfort works: Sign up in 60 seconds, AI match in seconds, live tracking, rate and repeat. Free logistics platform for India."
+        />
+        <link rel="canonical" href="https://tranzfort.com/how-it-works" />
+        <meta property="og:title" content="How TranZfort Works" />
+        <meta
+          property="og:description"
+          content="Sign up in 60 seconds, AI match in seconds, live tracking, rate and repeat. Free logistics platform."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How long does sign up take?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Sign up takes about 60 seconds. Download the app, tell the AI whether you're a supplier or trucker, and complete KYC with Aadhaar OTP verification. Voice-guided onboarding available in Hindi.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How fast does AI matching work?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "AI matching typically happens within 90 seconds. The matching engine considers lane, weight, commodity, ratings, distance and timing to surface the perfect 3-5 matches.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What documents do I need for KYC?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "For truckers: Aadhaar, RC, driving license. For suppliers: Aadhaar, GST, PAN. All verified instantly via OTP or AI OCR — no physical paperwork.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does it work for first-time users?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The AI guides you through every step with voice instructions in Hindi and English. No prior tech experience needed. Designed for drivers who've never used a smartphone app.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How does the rating system work?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "After delivery, both parties rate each other in one tap. The AI learns from your ratings and preferences, so future matches get even better. Build your trusted network over time.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="How it works"
         title={
@@ -155,6 +223,53 @@ function HowItWorks() {
             >
               Get Started Now <ArrowRight className="h-4 w-4" />
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-5 lg:px-8">
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold">How it works questions</h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                q: "How long does sign up take?",
+                a: "Sign up takes about 60 seconds. Download the app, tell the AI whether you're a supplier or trucker, and complete KYC with Aadhaar OTP verification. Voice-guided onboarding available in Hindi.",
+              },
+              {
+                q: "How fast does AI matching work?",
+                a: "AI matching typically happens within 90 seconds. The matching engine considers lane, weight, commodity, ratings, distance and timing to surface the perfect 3-5 matches.",
+              },
+              {
+                q: "What documents do I need for KYC?",
+                a: "For truckers: Aadhaar, RC, driving license. For suppliers: Aadhaar, GST, PAN. All verified instantly via OTP or AI OCR — no physical paperwork.",
+              },
+              {
+                q: "Does it work for first-time users?",
+                a: "Yes. The AI guides you through every step with voice instructions in Hindi and English. No prior tech experience needed. Designed for drivers who've never used a smartphone app.",
+              },
+              {
+                q: "How does the rating system work?",
+                a: "After delivery, both parties rate each other in one tap. The AI learns from your ratings and preferences, so future matches get even better. Build your trusted network over time.",
+              },
+            ].map((x, i) => (
+              <details
+                key={i}
+                className="group p-5 rounded-2xl bg-card border border-border open:border-teal/40 transition-colors"
+              >
+                <summary className="cursor-pointer font-semibold flex items-center justify-between">
+                  {x.q}
+                  <span className="text-teal text-xl group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-ink-soft leading-relaxed">{x.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
