@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowRight,
   Sparkles,
@@ -18,6 +19,73 @@ import screen from "@/assets/screen-supplier.jpg";
 function SuppliersPage() {
   return (
     <SiteLayout>
+      <Helmet>
+        <title>For Suppliers — TranZfort</title>
+        <meta
+          name="description"
+          content="TranZfort for suppliers: AI load matching, verified truckers, zero commissions, real-time tracking. Free core plan."
+        />
+        <link rel="canonical" href="https://tranzfort.com/for-suppliers" />
+        <meta property="og:title" content="TranZfort for Suppliers" />
+        <meta
+          property="og:description"
+          content="AI load matching, verified truckers, zero commissions, real-time tracking. Free core plan."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        {/* FAQPage Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "Is the supplier app really free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The TranZfort Supplier App is free forever for the core plan. No setup fees, no commissions on loads. We make our money on premium features for fleets.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How does AI load matching work?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "You post a load once with details (lane, weight, pickup/drop, rate). Our AI analyzes your requirements and matches you to verified truckers who fit your criteria. Usually under 90 seconds.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Are the truckers verified?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Every trucker on TranZfort goes through a verification process including Aadhaar KYC, license check, and vehicle inspection. We track their delivery performance.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I track my shipments?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. Get real-time GPS tracking, automated delivery confirmations, and digital proof of delivery. All accessible from the app.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What about payment?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "TranZfort handles payments securely. You can pay via UPI, bank transfer, or credit card. Funds are held in escrow and released upon delivery confirmation.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
+      </Helmet>
       <PageHero
         eyebrow="For Suppliers"
         title={
@@ -163,6 +231,53 @@ function SuppliersPage() {
                 <div className="mt-4 font-bold text-lg">{x.t}</div>
                 <p className="text-ink-soft text-sm mt-2">{x.d}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 bg-muted/40">
+        <div className="max-w-4xl mx-auto px-5 lg:px-8">
+          <div className="text-center">
+            <div className="text-xs uppercase tracking-[0.25em] text-teal font-semibold">FAQ</div>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold">Questions for suppliers</h2>
+          </div>
+          <div className="mt-10 space-y-3">
+            {[
+              {
+                q: "Is the supplier app really free?",
+                a: "Yes. The TranZfort Supplier App is free forever for the core plan. No setup fees, no commissions on loads. We make our money on premium features for fleets.",
+              },
+              {
+                q: "How does AI load matching work?",
+                a: "You post a load once with details (lane, weight, pickup/drop, rate). Our AI analyzes your requirements and matches you to verified truckers who fit your criteria. Usually under 90 seconds.",
+              },
+              {
+                q: "Are the truckers verified?",
+                a: "Yes. Every trucker on TranZfort goes through a verification process including Aadhaar KYC, license check, and vehicle inspection. We track their delivery performance.",
+              },
+              {
+                q: "Can I track my shipments?",
+                a: "Yes. Get real-time GPS tracking, automated delivery confirmations, and digital proof of delivery. All accessible from the app.",
+              },
+              {
+                q: "What about payment?",
+                a: "TranZfort handles payments securely. You can pay via UPI, bank transfer, or credit card. Funds are held in escrow and released upon delivery confirmation.",
+              },
+            ].map((x, i) => (
+              <details
+                key={i}
+                className="group p-5 rounded-2xl bg-card border border-border open:border-teal/40 transition-colors"
+              >
+                <summary className="cursor-pointer font-semibold flex items-center justify-between">
+                  {x.q}
+                  <span className="text-teal text-xl group-open:rotate-45 transition-transform">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-ink-soft leading-relaxed">{x.a}</p>
+              </details>
             ))}
           </div>
         </div>
