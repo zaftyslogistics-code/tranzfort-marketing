@@ -32,6 +32,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium
 
+      - name: Download APK from GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p public
+          gh release download --pattern "app-release.apk" --dir public/ --clobber
+          ls -lh public/app-release.apk
+
       - name: Build project
         run: npm run build
         env:
@@ -68,6 +76,8 @@ jobs:
         run: |
           echo "=== Files in dist/ ==="
           ls -la dist/
+          echo "=== APK in dist/ ==="
+          ls -lh dist/app-release.apk
           echo "=== Files in dist/assets/ ==="
           ls -la dist/assets/ || echo "No assets directory"
 
